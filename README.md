@@ -88,6 +88,10 @@ Finding the field: a **RegExp** on the field label, a **CSS** selector or **XPat
 
 Reload open tabs (F5): the old copy of the script in a tab disables itself after the extension updates, but a page that hasn't been reloaded may still show its errors in the console.
 
+## Privacy
+
+Formigo collects no data: settings and files stay in the browser. The full policy is in [PRIVACY.md](PRIVACY.md); its GitHub link works as the privacy policy URL for the Chrome Web Store and addons.mozilla.org.
+
 ## Building from source
 
 ```
