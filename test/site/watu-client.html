@@ -1,0 +1,41 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Watu</title>
+<style>.dropdown-menu{display:none}.dropdown-menu.show{display:block}.form-upload input[type=file]{opacity:0;width:1px;height:1px;position:absolute}.form-upload{position:relative;border:1px dashed #999;padding:8px}</style></head><body>
+<app-root><main><div class="app-form"><div class="form-head"><h3>New</h3><span>5F5MA026T2</span></div>
+<form novalidate data-test="client-main-data-form">
+<div class="form-block"><div id="clientPhotoDocFiles" class="form-group"><div class="form-heading"><h3>Client photo</h3></div>
+<dropzone><div appdnd class="form-upload"><i class="ic-camera"></i><label for="fileDropRef"> Client photo </label><input type="file" capture="environment" id="fileDropRef" accept="image/*" data-test="dropzone-input-1"></div></dropzone></div></div>
+<div class="form-heading"><h3>Birth date</h3></div>
+<div id="mainData.birthDate" class="form-group"><div class="form-group-body date-input">
+<div class="inp"><label>Day (DD)</label><input type="text" inputmode="numeric" placeholder="00" maxlength="2" name="mainData.birthDateDay"></div><div class="sep">/</div>
+<div class="inp"><label>Month (MM)</label><input type="text" inputmode="numeric" placeholder="00" maxlength="2" name="mainData.birthDateMonth"></div><div class="sep">/</div>
+<div class="inp"><label>Year (YYYY)</label><input type="text" inputmode="numeric" placeholder="0000" maxlength="4" name="mainData.birthDateYear"></div></div></div>
+<div class="form-heading"><h3>Gender</h3></div>
+<div id="mainData.genderId" class="form-group"><dropdown-with-search><div ngbdropdown class="dropdown"><div class="form-group-head"><label></label></div>
+<div ngbdropdownanchor class="dropdown-toggle form-group-body dropdown" aria-expanded="false"><div class="select-input"><label style="cursor:pointer"><div class="label"></div></label><input type="text" placeholder="Select" disabled></div></div>
+<div ngbdropdownmenu class="dropdown-menu dropdown-list"><ul><li style="cursor:pointer"> Male </li><li style="cursor:pointer"> Female </li></ul></div></div></dropdown-with-search></div>
+<div id="idDocs" class="form-block"><div class="form-heading"><h3> ID number (card, identity book, driving license) </h3></div>
+<div class="form-group"><dropzone><div appdnd class="form-upload"><label for="fileDropRef"> Front side </label><input type="file" capture="environment" accept="image/*" data-test="dropzone-input-1"></div></dropzone></div>
+<div class="form-group" id="documentNumber-1"><div class="form-group-head"><label>Document number</label></div><div class="form-group-head"><label>Exactly 13 digits required</label></div><div class="form-group-body"><input type="text" data-test="client-main-data-person-doc-type-id-input"></div></div></div>
+<div class="form-heading"><h3>Phone number and language</h3></div>
+<div class="row"><div id="mainData.primPhoneNumber" class="form-group"><div class="form-group-head"><label>Primary phone nr</label></div><div class="form-group-body"><input type="text" inputmode="numeric" name="mainData.primPhoneNumber"></div></div></div>
+<div id="mainData.primLanguageId" class="form-group"><dropdown-with-search><div ngbdropdown class="dropdown"><div class="form-group-head"><label>Primary language</label></div>
+<div ngbdropdownanchor class="dropdown-toggle form-group-body dropdown" aria-expanded="false"><div class="select-input"><label><div class="label"></div></label><input type="text" placeholder="Select" disabled></div></div>
+<div ngbdropdownmenu class="dropdown-menu dropdown-list"><ul><li> Afrikaans </li><li> English </li><li> Zulu </li></ul></div></div></dropdown-with-search></div>
+<button>Continue</button></form></div></main></app-root>
+<script>
+window.model = {};
+document.querySelectorAll('[ngbdropdown]').forEach((dd) => {
+  const anchor = dd.querySelector('[ngbdropdownanchor]'); const menu = dd.querySelector('.dropdown-menu');
+  anchor.addEventListener('click', () => { menu.classList.toggle('show'); anchor.setAttribute('aria-expanded', menu.classList.contains('show')); });
+  menu.querySelectorAll('li').forEach((li) => li.addEventListener('click', () => { dd.querySelector('.label').textContent = li.textContent.trim(); window.model[dd.closest('.form-group').id] = li.textContent.trim(); menu.classList.remove('show'); anchor.setAttribute('aria-expanded', 'false'); }));
+});
+// like an Angular dropzone: shows the file in a list and clears the input
+document.querySelectorAll('input[type=file]').forEach((i, n) => i.addEventListener('change', () => {
+  const f = i.files[0]; if (!f) return;
+  window.model['file' + n] = (window.model['file' + n] ? window.model['file' + n] + ' + ' : '') + f.name;
+  const list = i.closest('dropzone').querySelector('.form-upload-list') || i.closest('dropzone').appendChild(Object.assign(document.createElement('div'), { className: 'form-upload-list' }));
+  list.innerHTML = '<div class="file-item">' + f.name + '</div>';
+  i.value = '';
+}));
+document.querySelectorAll('input:not([type=file])').forEach((i) => i.addEventListener('input', () => { window.model[i.name || i.dataset.test] = i.value; }));
+</script></body></html>

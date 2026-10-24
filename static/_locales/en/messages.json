@@ -1,0 +1,17 @@
+{
+  "extName": {
+    "message": "Formigo — smart form filler"
+  },
+  "extDesc": {
+    "message": "Fill forms with realistic Faker test data: smart field detection, custom rules, 70+ data languages, files of the right type."
+  },
+  "cmdFillAll": {
+    "message": "Fill all fields on the page"
+  },
+  "cmdFillForm": {
+    "message": "Fill the current form"
+  },
+  "cmdFillField": {
+    "message": "Fill the current field"
+  }
+}

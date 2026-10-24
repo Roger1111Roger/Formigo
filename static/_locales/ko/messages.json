@@ -1,0 +1,17 @@
+{
+  "extName": {
+    "message": "Formigo — 스마트 폼 채우기"
+  },
+  "extDesc": {
+    "message": "Faker로 폼에 실제와 같은 테스트 데이터 입력: 문맥 기반 필드 감지, 사용자 규칙, 70개 이상의 데이터 언어, 알맞은 형식의 파일."
+  },
+  "cmdFillAll": {
+    "message": "페이지의 모든 필드 채우기"
+  },
+  "cmdFillForm": {
+    "message": "현재 폼 채우기"
+  },
+  "cmdFillField": {
+    "message": "현재 필드 채우기"
+  }
+}

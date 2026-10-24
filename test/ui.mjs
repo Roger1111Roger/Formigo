@@ -1,0 +1,28 @@
+import { chromium } from 'playwright-core';
+import http from 'node:http';
+import { readFileSync } from 'node:fs';
+import path from 'node:path';
+const site = path.resolve('test/site');
+const server = http.createServer((req, res) => { try { res.end(readFileSync(path.join(site, req.url.split('?')[0]))); } catch { res.statusCode = 404; res.end(); } }).listen(8768);
+const ext = path.resolve('dist');
+const ctx = await chromium.launchPersistentContext('', { executablePath: process.argv[2], headless: true, args: [`--disable-extensions-except=${ext}`, `--load-extension=${ext}`, '--headless=new'] });
+let [sw] = ctx.serviceWorkers(); if (!sw) sw = await ctx.waitForEvent('serviceworker');
+const id = sw.url().split('/')[2];
+const opt = await ctx.newPage();
+await opt.setViewportSize({ width: 1100, height: 900 });
+await opt.goto(`chrome-extension://${id}/options.html`); await opt.waitForTimeout(800);
+console.log('locales in select:', await opt.$$eval('#locale option', (o) => o.length), 'selected:', await opt.$eval('#locale', (s) => s.value));
+// record a new hotkey for "Fill all"
+const hk = (await opt.$$('#hotkeys input'))[0];
+await hk.click(); await opt.keyboard.press('Control+Shift+Y'); await opt.waitForTimeout(300);
+console.log('hotkey now:', await hk.inputValue());
+await opt.selectOption('#locale', 'de'); await opt.click('#save'); await opt.waitForTimeout(300);
+await opt.screenshot({ path: 'test/options.png', fullPage: true });
+const page = await ctx.newPage();
+await page.goto('http://localhost:8768/watu-user.html'); await page.waitForTimeout(800);
+await page.click('body'); await page.keyboard.press('Control+Shift+Y'); await page.waitForTimeout(1500);
+console.log('after hotkey:', await page.evaluate(() => [...document.querySelectorAll('input')].map((i) => i.value).join(' | ')));
+const pop = await ctx.newPage(); await pop.setViewportSize({ width: 280, height: 330 });
+await pop.goto(`chrome-extension://${id}/popup.html`); await pop.waitForTimeout(500);
+await pop.screenshot({ path: 'test/popup.png' });
+await ctx.close(); server.close();

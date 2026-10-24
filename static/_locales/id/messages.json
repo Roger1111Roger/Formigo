@@ -1,0 +1,17 @@
+{
+  "extName": {
+    "message": "Formigo — pengisi formulir cerdas"
+  },
+  "extDesc": {
+    "message": "Isi formulir dengan data uji realistis dari Faker: deteksi kolom kontekstual, aturan kustom, 70+ bahasa data, file bertipe tepat."
+  },
+  "cmdFillAll": {
+    "message": "Isi semua kolom di halaman"
+  },
+  "cmdFillForm": {
+    "message": "Isi formulir saat ini"
+  },
+  "cmdFillField": {
+    "message": "Isi kolom saat ini"
+  }
+}

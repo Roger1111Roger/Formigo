@@ -1,0 +1,7 @@
+{
+  "extName": { "message": "Formigo — slimme formulierinvuller" },
+  "extDesc": { "message": "Vult formulieren met realistische testdata van Faker: contextuele velddetectie, eigen regels, 70+ datatalen." },
+  "cmdFillAll": { "message": "Alle velden op de pagina invullen" },
+  "cmdFillForm": { "message": "Het huidige formulier invullen" },
+  "cmdFillField": { "message": "Het huidige veld invullen" }
+}

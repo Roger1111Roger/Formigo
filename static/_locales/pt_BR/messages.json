@@ -1,0 +1,17 @@
+{
+  "extName": {
+    "message": "Formigo — preenchimento inteligente de formulários"
+  },
+  "extDesc": {
+    "message": "Dados de teste do Faker nos formulários: detecção por contexto, regras próprias, 70+ idiomas de dados, arquivos do tipo certo."
+  },
+  "cmdFillAll": {
+    "message": "Preencher todos os campos da página"
+  },
+  "cmdFillForm": {
+    "message": "Preencher o formulário atual"
+  },
+  "cmdFillField": {
+    "message": "Preencher o campo atual"
+  }
+}

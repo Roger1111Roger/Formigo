@@ -1,0 +1,41 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><title>Тестовая форма</title></head><body>
+<form id="main">
+  <h3>Обычная форма (RU)</h3>
+  <label for="a1">Фамилия</label><input id="a1" name="field_1">
+  <label>Имя <input name="f2"></label>
+  <label for="a3">Отчество</label><input id="a3">
+  <input name="contact_email" type="text" placeholder="Электронная почта">
+  <input name="emailConfirm" placeholder="Повторите e-mail">
+  <input type="password" name="pwd"><input type="password" name="pwd_repeat" aria-label="Подтверждение пароля">
+  <div><span>Номер телефона</span><input class="x"></div>
+  <div><span>ИНН</span><input class="y" maxlength="12"></div>
+  <label>СНИЛС <input name="snils"></label>
+  <label>Дата рождения <input type="date" name="bd"></label>
+  <label>Возраст <input type="number" name="age" min="18" max="99"></label>
+  <label>Индекс <input name="zip" pattern="\d{6}"></label>
+  <label>Город <input name="city"></label>
+  <label>Код <input name="code" pattern="[A-Z]{3}-\d{4}"></label>
+  <label>Ник <input name="nick" maxlength="8"></label>
+  <label>Страна <select name="country"><option value="">--</option><option>Россия</option><option>Казахстан</option></select></label>
+  <fieldset><legend>Пол</legend><label><input type="radio" name="gender" value="m"> Мужской</label><label><input type="radio" name="gender" value="f"> Женский</label></fieldset>
+  <label><input type="checkbox" name="newsletter"> Подписка</label>
+  <label>Комментарий <textarea name="comment"></textarea></label>
+  <div contenteditable="true" aria-label="О себе" id="ce" style="border:1px solid #ccc;min-height:20px"></div>
+  <input name="captcha_answer" placeholder="captcha">
+  <input type="hidden" name="csrf" value="keep">
+  <input name="disabledOne" disabled>
+  <input name="promo" id="promo">
+</form>
+<form id="en"><h3>EN</h3>
+  <input autocomplete="given-name" name="a"><input autocomplete="family-name" name="b"><input autocomplete="organization" name="c">
+  <input name="cardNumber"><input name="cvv"><input name="exp" placeholder="MM/YY">
+  <input name="website"><input name="jobTitle"><input name="street_address">
+</form>
+<div id="react-root"></div>
+<h3>Shadow DOM</h3><x-field></x-field>
+<h3>iframe</h3><iframe id="fr" src="frame.html" style="height:80px"></iframe>
+<script>
+customElements.define('x-field', class extends HTMLElement { constructor(){ super(); this.attachShadow({mode:'open'}).innerHTML = '<label>Фамилия<input name="shadowLast"></label><input name="shadowMail" type="email">'; } });
+</script>
+<script src="react.js"></script>
+</body></html>

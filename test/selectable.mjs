@@ -1,0 +1,15 @@
+import { chromium } from 'playwright-core';
+import http from 'node:http';
+import { readFileSync } from 'node:fs';
+import path from 'node:path';
+const site = path.resolve('test/site');
+const server = http.createServer((req, res) => { try { res.end(readFileSync(path.join(site, req.url.split('?')[0]))); } catch { res.statusCode = 404; res.end(); } }).listen(8783);
+const ext = path.resolve('dist');
+const ctx = await chromium.launchPersistentContext('', { executablePath: process.argv[2], headless: true, args: [`--disable-extensions-except=${ext}`, `--load-extension=${ext}`, '--headless=new'] });
+let [sw] = ctx.serviceWorkers(); if (!sw) sw = await ctx.waitForEvent('serviceworker');
+const page = await ctx.newPage();
+await page.goto('http://localhost:8783/letcode.html'); await page.waitForTimeout(500);
+await sw.evaluate(async () => { const [t] = await chrome.tabs.query({ url: 'http://localhost:8783/*' }); return self.__ffp.broadcast(t.id, { action: 'fillAll' }); });
+await page.waitForTimeout(2500);
+console.log('выделено:', await page.locator('.list-container > .selected').count(), 'из', await page.locator('.list-container > div').count());
+await ctx.close(); server.close();

@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Formigo</title>
+<link rel="stylesheet" href="theme.css">
+<style>
+.layout{display:grid;grid-template-columns:220px minmax(0,1fr);min-height:100vh}
+aside{border-right:1px solid var(--border);padding:24px 14px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:20px;background:var(--surface)}
+.brand{display:flex;gap:10px;align-items:center;padding:0 8px}
+.brand img{width:28px;height:28px}
+.brand b{font-size:17px;font-weight:600;letter-spacing:-.01em}
+.brand small{display:block;color:var(--muted);font-size:11px}
+nav{display:flex;flex-direction:column;gap:2px}
+nav a{display:block;padding:8px 10px;border-radius:6px;color:var(--text);text-decoration:none}
+nav a:hover{background:var(--surface-2)}
+nav a.active{background:var(--accent-soft);color:var(--accent);font-weight:500}
+main{padding:32px 40px 64px;max-width:980px;width:100%}
+.page{display:none}.page.active{display:block}
+h1{font-size:22px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em}
+.lead{color:var(--muted);margin:0 0 24px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin:0 0 16px;box-shadow:var(--shadow)}
+.card h2{font-size:15px;font-weight:600;margin:0 0 4px}
+.card>.muted{margin:0 0 14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px 20px}
+.field{display:flex;flex-direction:column;gap:5px;font-size:13px;color:var(--muted)}
+.field>span{font-weight:500}
+.checks{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:10px 20px;margin-top:16px}
+.check{display:flex;gap:10px;align-items:flex-start;cursor:pointer}
+.check input{margin-top:2px}
+.check small{display:block;color:var(--muted);font-size:12px;line-height:1.4;margin-top:2px}
+.hk{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px 20px}
+.hk input{font-family:var(--mono);font-size:12px;cursor:pointer;text-align:center}
+.bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.seg{display:inline-flex;width:fit-content;justify-self:start;align-self:start;border:1px solid var(--border-strong);border-radius:6px;overflow:hidden}
+.seg button{white-space:nowrap;border:0;border-radius:0;padding:6px 12px;background:var(--surface)}
+.seg button+button{border-left:1px solid var(--border-strong)}
+.seg button.on{background:var(--accent-soft);color:var(--accent);font-weight:500}
+table{width:100%;border-collapse:collapse}
+th,td{border-bottom:1px solid var(--border);padding:8px 6px;text-align:left;vertical-align:top}
+th{font-size:12px;color:var(--muted);font-weight:500}
+tr:last-child td{border-bottom:0}
+td textarea{min-height:34px}
+tr.changed td:first-child{box-shadow:inset 3px 0 0 var(--accent)}
+.err{border-color:var(--danger)!important}
+.preview{font:12px var(--mono);color:var(--success);word-break:break-all;margin-top:4px}
+.preview.bad{color:var(--danger)}
+.type-id code{background:none;padding:0;color:var(--text)}
+.files{list-style:none;padding:0;margin:12px 0 0}
+.files li{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border)}
+.files li:last-child{border-bottom:0}
+details summary{cursor:pointer;color:var(--accent)}
+details ul{margin:8px 0 0;padding-left:18px;color:var(--muted);font-size:13px}
+.toast{position:fixed;right:20px;bottom:20px;background:var(--text);color:var(--bg);padding:8px 14px;border-radius:6px;font-size:13px;opacity:0;transform:translateY(6px);transition:.2s;pointer-events:none}
+.toast.show{opacity:1;transform:none}
+.kv{display:grid;grid-template-columns:max-content 1fr;gap:6px 16px;font-size:13px}
+.row-actions{white-space:nowrap}
+.row-actions button{padding:4px 8px}
+@media (max-width:820px){
+  .layout{grid-template-columns:1fr}
+  aside{position:static;height:auto;flex-direction:row;flex-wrap:wrap;align-items:center;padding:12px 16px;border-right:0;border-bottom:1px solid var(--border)}
+  nav{flex-direction:row;flex-wrap:wrap}
+  main{padding:20px 16px 48px}
+  thead{display:none} tr,td{display:block} td{border:0;padding:4px 0} tr{border-bottom:1px solid var(--border);padding:10px 0}
+}
+.feat{margin:10px 0 0;padding-left:18px;display:grid;gap:6px}
+.feat li::marker{color:var(--warm)}
+</style></head><body>
+<div class="layout">
+<aside>
+  <div class="brand"><img src="icons/logo.svg" alt=""><div><b>Formigo</b><small id="ver"></small></div></div>
+  <nav>
+    <a href="#settings" data-i18n="tab.settings">Настройки</a>
+    <a href="#data" data-i18n="tab.data">Файлы и типы</a>
+    <a href="#rules" data-i18n="tab.rules">Свои правила</a>
+    <a href="#share" data-i18n="tab.share">Импорт и экспорт</a>
+    <a href="#about" data-i18n="tab.about">О программе</a>
+  </nav>
+</aside>
+<main>
+
+<section class="page" id="page-settings">
+  <h1 data-i18n="tab.settings"></h1><p class="lead" data-i18n="tagline"></p>
+  <div class="card">
+    <h2 data-i18n="sec.interface"></h2>
+    <div class="grid" style="margin-top:12px">
+      <label class="field"><span data-i18n="uiLang"></span><select id="uiLang"></select></label>
+      <div class="field"><span data-i18n="theme"></span>
+        <div class="seg" id="themeSeg"><button data-v="auto" data-i18n="theme.auto"></button><button data-v="light" data-i18n="theme.light"></button><button data-v="dark" data-i18n="theme.dark"></button></div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <h2 data-i18n="sec.fill"></h2>
+    <div class="grid" style="margin-top:12px">
+      <label class="field"><span data-i18n="locale"></span><select id="locale"></select></label>
+      <label class="field"><span data-i18n="checkboxMode"></span><select id="checkboxMode"><option value="random" data-i18n="cb.random"></option><option value="check" data-i18n="cb.check"></option><option value="uncheck" data-i18n="cb.uncheck"></option></select></label>
+      <label class="field"><span data-i18n="imageMode"></span><select id="imageMode"><option value="smart" data-i18n="img.smart"></option><option value="simple" data-i18n="img.simple"></option></select></label>
+      <label class="field"><span data-i18n="passwordMode"></span><select id="passwordMode"><option value="random" data-i18n="pw.random"></option><option value="fixed" data-i18n="pw.fixed"></option></select></label>
+      <label class="field" id="fixedPasswordBox"><span data-i18n="fixedPassword"></span><input type="text" id="fixedPassword"></label>
+      <label class="field"><span data-i18n="emailDomain"></span><input type="text" id="emailDomain" data-i18n-ph="emailDomain.ph"></label>
+    </div>
+    <div class="checks">
+      <label class="check"><input type="checkbox" id="refillFilled"><span><span data-i18n="refillFilled"></span><small data-i18n="refillFilled.hint"></small></span></label>
+      <label class="check"><input type="checkbox" id="modalOnly"><span><span data-i18n="modalOnly"></span><small data-i18n="modalOnly.hint"></small></span></label>
+      <label class="check"><input type="checkbox" id="ignoreHidden"><span><span data-i18n="ignoreHidden"></span><small data-i18n="ignoreHidden.hint"></small></span></label>
+      <label class="check"><input type="checkbox" id="fillReadonlyDates"><span><span data-i18n="fillReadonlyDates"></span><small data-i18n="fillReadonlyDates.hint"></small></span></label>
+      <label class="check"><input type="checkbox" id="selectRetries"><span><span data-i18n="selectRetries"></span><small data-i18n="selectRetries.hint"></small></span></label>
+      <label class="check"><input type="checkbox" id="fillFiles"><span><span data-i18n="fillFiles"></span><small data-i18n="fillFiles.hint"></small></span></label>
+      <label class="check"><input type="checkbox" id="agreeAlways"><span><span data-i18n="agreeAlways"></span><small data-i18n="agreeAlways.hint"></small></span></label>
+      <label class="check"><input type="checkbox" id="typeChars"><span><span data-i18n="typeChars"></span><small data-i18n="typeChars.hint"></small></span></label>
+      <label class="check"><input type="checkbox" id="highlight"><span><span data-i18n="highlight"></span><small data-i18n="highlight.hint"></small></span></label>
+    </div>
+    <label class="field" style="margin-top:16px"><span data-i18n="ignoreSelectors"></span><textarea id="ignoreSelectors" rows="2"></textarea></label>
+  </div>
+  <div class="card">
+    <h2 data-i18n="sec.hotkeys"></h2><p class="muted" data-i18n="hotkeys.hint"></p>
+    <div class="hk" id="hotkeys"></div>
+  </div>
+  <div class="bar"><button id="reset" class="danger" data-i18n="reset"></button></div>
+</section>
+
+<section class="page" id="page-data">
+  <h1 data-i18n="tab.data"></h1><p class="lead"></p>
+  <div class="card">
+    <h2 data-i18n="sec.files"></h2><p class="muted" data-i18n="files.hint"></p>
+    <div class="bar"><button id="addFiles" data-i18n="files.add"></button><input type="file" id="filesInput" multiple hidden></div>
+    <ul class="files" id="filesList"></ul>
+  </div>
+  <div class="card">
+    <h2 data-i18n="sec.types"></h2><p class="muted" data-i18n="types.hint"></p>
+    <div class="bar" style="margin-bottom:12px">
+      <input type="text" id="typeFilter" data-i18n-ph="types.filter" style="max-width:220px">
+      <input type="text" id="typeTest" data-i18n-ph="types.test" style="max-width:320px">
+      <span id="typeTestOut" class="preview" style="margin:0"></span>
+      <label class="check"><input type="checkbox" id="typeChangedOnly"><span data-i18n="types.changed"></span></label>
+    </div>
+    <table><thead><tr><th style="width:24%" data-i18n="types.col.type"></th><th data-i18n="types.col.pattern"></th><th style="width:30%" data-i18n="types.col.value"></th><th style="width:44px"></th></tr></thead>
+    <tbody id="types"></tbody></table>
+  </div>
+</section>
+
+<section class="page" id="page-rules">
+  <h1 data-i18n="sec.rules"></h1><p class="lead" data-i18n="rules.hint"></p><p class="lead" style="margin-top:-8px" data-i18n="rules.pickHint"></p>
+  <div class="card">
+    <table><thead><tr><th style="width:36px" data-i18n="rules.on"></th><th style="width:15%" data-i18n="rules.note"></th><th style="width:96px" data-i18n="rules.match"></th><th style="width:22%" data-i18n="rules.pattern"></th><th style="width:116px" data-i18n="rules.vtype"></th><th data-i18n="rules.value"></th><th style="width:110px"></th></tr></thead>
+    <tbody id="rules"></tbody></table>
+    <p class="muted" id="rulesEmpty" data-i18n="rules.empty" hidden></p>
+    <div class="bar" style="margin-top:12px"><button id="addRule" class="primary" data-i18n="rules.add"></button></div>
+  </div>
+  <details class="card"><summary data-i18n="rules.help"></summary>
+    <ul><li data-i18n="help.faker"></li><li data-i18n="help.template"></li><li data-i18n="help.regex"></li><li><span id="typesList"></span></li></ul>
+  </details>
+</section>
+
+<section class="page" id="page-share">
+  <h1 data-i18n="tab.share"></h1><p class="lead"></p>
+  <div class="card">
+    <h2 data-i18n="sec.export"></h2><p class="muted" data-i18n="export.hint"></p>
+    <div class="bar"><button id="exportFile" class="primary" data-i18n="export.file"></button><button id="copyJson" data-i18n="export.copy"></button>
+    <label class="check"><input type="checkbox" id="exportRulesOnly"><span data-i18n="export.rulesOnly"></span></label></div>
+  </div>
+  <div class="card">
+    <h2 data-i18n="sec.import"></h2>
+    <div class="bar" style="margin-top:12px"><button id="importFile" data-i18n="import.file"></button><button id="importPaste" data-i18n="import.paste"></button>
+    <label class="field" style="flex-direction:row;align-items:center;gap:8px"><span data-i18n="import.mode"></span><select id="importMode" style="width:auto"><option value="merge" data-i18n="import.merge"></option><option value="replace" data-i18n="import.replace"></option></select></label>
+    <input type="file" id="fileInput" accept=".json,application/json" hidden></div>
+    <p class="muted" id="importMsg" style="margin:12px 0 0"></p>
+  </div>
+</section>
+
+<section class="page" id="page-about">
+  <h1 data-i18n="tab.about"></h1><p class="lead" data-i18n="about.text"></p>
+  <div class="card">
+    <div class="kv"><span class="muted" data-i18n="about.version"></span><span id="aboutVer" class="mono"></span><span class="muted">Chrome Web Store</span><a id="storeLink" href="https://chromewebstore.google.com/detail/formigo-%E2%80%94-smart-form-fill/nihgcabaembfhcogajfjjgbnhmbbgpkc" target="_blank" rel="noopener">Formigo — Smart Form Fill</a></div>
+  </div>
+  <div class="card"><h2 data-i18n="about.what"></h2><ul class="feat"><li data-i18n="about.f1"></li><li data-i18n="about.f2"></li><li data-i18n="about.f3"></li><li data-i18n="about.f4"></li><li data-i18n="about.f5"></li></ul></div>
+  <div class="card"><h2 data-i18n="sec.hotkeys"></h2><div class="kv" id="aboutKeys" style="margin-top:10px"></div></div>
+  <div class="card"><p class="muted" style="margin:0 0 8px" data-i18n="about.privacy"></p><p class="muted" style="margin:0 0 8px" data-i18n="about.faker"></p><p class="muted" style="margin:0" data-i18n="about.fonts"></p></div>
+</section>
+
+</main>
+</div>
+<div class="toast" id="toast"></div>
+<script src="options.js"></script>
+</body></html>

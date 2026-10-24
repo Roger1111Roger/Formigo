@@ -1,0 +1,7 @@
+{
+  "extName": { "message": "Formigo — inteligentne wypełnianie formularzy" },
+  "extDesc": { "message": "Wypełnia formularze realistycznymi danymi testowymi (Faker): wykrywanie pól z kontekstu, własne reguły, 70+ języków danych." },
+  "cmdFillAll": { "message": "Wypełnij wszystkie pola na stronie" },
+  "cmdFillForm": { "message": "Wypełnij bieżący formularz" },
+  "cmdFillField": { "message": "Wypełnij bieżące pole" }
+}

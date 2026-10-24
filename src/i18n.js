@@ -1,0 +1,292 @@
+// Extension UI language (not to be confused with generated-data language settings.locale)
+const RU = {
+  'tab.settings': 'Настройки', 'tab.data': 'Файлы и типы', 'tab.rules': 'Свои правила', 'tab.share': 'Импорт и экспорт', 'tab.about': 'О программе',
+  'tagline': 'Тестовые данные в формах за одно нажатие',
+  'sec.interface': 'Интерфейс', 'uiLang': 'Язык интерфейса', 'theme': 'Тема', 'theme.auto': 'Как в системе', 'theme.light': 'Светлая', 'theme.dark': 'Тёмная',
+  'sec.fill': 'Заполнение', 'locale': 'Язык данных', 'checkboxMode': 'Чекбоксы', 'cb.random': 'Случайно', 'cb.check': 'Всегда отмечать', 'cb.uncheck': 'Всегда снимать',
+  'imageMode': 'Картинки для загрузки', 'img.smart': 'По смыслу: лицо, документ, фото', 'img.simple': 'Простая PNG 15×15',
+  'passwordMode': 'Пароль', 'pw.random': 'Случайный сложный', 'pw.fixed': 'Фиксированный', 'fixedPassword': 'Фиксированный пароль',
+  'emailDomain': 'Домен e-mail', 'emailDomain.ph': 'пусто = случайный',
+  'refillFilled': 'Перезаполнять уже заполненные поля', 'modalOnly': '«Текущая форма» при открытом окне заполняет только окно',
+  'ignoreHidden': 'Пропускать скрытые поля', 'fillReadonlyDates': 'Заполнять readonly-поля дат (datepicker)',
+  'selectRetries': 'Дозаполнять зависимые списки и появившиеся поля', 'fillFiles': 'Прикреплять файлы в поля загрузки',
+  'agreeAlways': 'Всегда отмечать «Согласен с условиями»', 'typeChars': 'Посимвольный ввод (для полей с масками)', 'highlight': 'Подсвечивать заполненные поля',
+  'ignoreSelectors': 'Не трогать поля по CSS-селекторам, по одному на строку',
+  'sec.hotkeys': 'Горячие клавиши', 'hotkeys.hint': 'Кликните в поле и нажмите сочетание. Backspace очищает.',
+  'hk.fillAll': 'Заполнить всё', 'hk.fillForm': 'Текущая форма', 'hk.fillField': 'Текущее поле', 'hk.debug': 'Показать типы полей',
+  'hk.none': 'не задано', 'hk.needMod': 'Добавьте Ctrl, Alt или Cmd, чтобы не мешать вводу текста',
+  'saved': 'Сохранено', 'reset': 'Сбросить все настройки', 'reset.confirm': 'Сбросить все настройки, правила и шаблоны типов?', 'reset.done': 'Настройки сброшены',
+  'sec.files': 'Тестовые файлы', 'files.hint': 'Файлы хранятся внутри расширения. Formigo определяет ожидаемый формат по accept, тексту зоны загрузки и подписи (PDF, DOCX, XLSX, CSV, картинка…) и берёт ваш файл этого формата, а если его нет, генерирует валидный файл сам.',
+  'files.add': 'Добавить файлы', 'files.none': 'Своих файлов нет: файлы нужного формата будут сгенерированы.', 'files.added': 'Файлы добавлены', 'remove': 'Удалить',
+  'sec.types': 'Типы полей', 'types.hint': 'Распознавание: RegExp по подписи, name/id и тексту рядом, \\b означает границу слова. Своё значение: /RegExp/, шаблон {{…}} или варианты по строкам.',
+  'types.filter': 'Найти тип', 'types.test': 'Проверить подпись, например «Device IMEI #1»', 'types.changed': 'Только изменённые',
+  'types.col.type': 'Тип', 'types.col.pattern': 'Распознавание', 'types.col.value': 'Своё значение',
+  'types.off': 'распознавание отключено', 'types.ctxOnly': 'только по контексту, можно добавить свой RegExp', 'types.builtin': 'встроенный генератор',
+  'types.reset': 'Вернуть встроенные', 'types.badRe': 'Неверный RegExp, будет использован встроенный', 'types.none': 'не распознано (text)',
+  'example': 'пример', 'error': 'ошибка', 'skipped': 'поле пропускается',
+  'sec.rules': 'Свои правила', 'rules.hint': 'Проверяются сверху вниз и важнее автоопределения. Подпись поля видна в подсказке режима «Показать типы полей».',
+  'rules.on': 'Вкл', 'rules.note': 'Заметка', 'rules.match': 'Поиск', 'rules.pattern': 'Шаблон поиска', 'rules.vtype': 'Значение', 'rules.value': 'Что подставить',
+  'rules.add': 'Добавить правило', 'rules.empty': 'Правил пока нет.', 'up': 'Выше', 'down': 'Ниже',
+  'v.faker': 'Faker', 'v.template': 'Шаблон', 'v.regex': 'RegExp', 'v.list': 'Список', 'v.type': 'Тип', 'v.fixed': 'Фикс.', 'v.skip': 'Пропустить',
+  'rules.help': 'Подсказка по значениям',
+  'help.faker': 'Faker: person.firstName, number.int({"min":1,"max":99}), string.numeric(10). Все методы: fakerjs.dev/api',
+  'help.template': 'Шаблон: qa+{{string.alphanumeric(6)}}@example.com, {{profile.lastName}} {{profile.firstName}}, {{type.inn}}',
+  'help.regex': 'RegExp: [A-Z]{2}-\\d{4}. Список: варианты по строкам. Тип: встроенный тип. Фикс.: как есть, для чекбокса true/false.',
+  'sec.export': 'Экспорт', 'export.hint': 'Небольшой файл .formigo.json с настройками, правилами и шаблонами типов, удобно отправить коллеге.',
+  'export.file': 'Скачать файл', 'export.rulesOnly': 'Только правила и шаблоны типов', 'export.copy': 'Скопировать как текст', 'export.copied': 'Скопировано в буфер обмена',
+  'sec.import': 'Импорт', 'import.file': 'Загрузить файл', 'import.paste': 'Вставить текст', 'import.mode': 'При импорте',
+  'import.merge': 'Добавить к моим', 'import.replace': 'Заменить всё', 'import.prompt': 'Вставьте текст настроек:',
+  'import.notJson': 'Это не файл настроек.', 'import.empty': 'В файле нет настроек Formigo.',
+  'import.replaced': 'Настройки заменены, правил: {n}.', 'import.merged': 'Добавлено правил: {n}, дубликатов пропущено: {d}.',
+  'about.text': 'Formigo заполняет формы правдоподобными тестовыми данными на базе Faker, а поля загрузки — файлами нужного формата: вашими предзагруженными или сгенерированными.',
+  'about.version': 'Версия', 'about.fonts': 'Шрифты Inter и JetBrains Mono распространяются по лицензии SIL Open Font License 1.1: их можно свободно использовать в любых, в том числе коммерческих, проектах.',
+  'about.faker': 'Данные генерирует библиотека Faker (MIT).', 'about.privacy': 'Расширение ничего не отправляет на сторонние серверы, кроме запроса картинок для полей загрузки в режиме «По смыслу».',
+  'about.keys': 'Горячие клавиши по умолчанию',
+  'popup.fillAll': 'Заполнить всё', 'popup.fillForm': 'Текущая форма', 'popup.fillField': 'Текущее поле', 'popup.debug': 'Показать типы полей',
+  'popup.refill': 'Перезаполнять заполненные', 'popup.settings': 'Настройки', 'popup.filled': 'Заполнено полей: {n}', 'popup.labeled': 'Подписано полей: {n}',
+  'popup.langSaved': 'Язык данных сохранён', 'popup.refillOn': 'Заполненные поля будут перезаписаны', 'popup.refillOff': 'Заполняются только пустые поля',
+  'menu.fillAll': 'Заполнить все поля на странице', 'menu.fillForm': 'Заполнить текущую форму', 'menu.fillField': 'Заполнить только это поле',
+  'menu.debug': 'Показать типы полей', 'menu.options': 'Настройки',
+  "hk.pick": "Правило для поля",
+  "popup.pick": "Правило для поля",
+ "popup.pickTitle": "Кликните поле на странице: Formigo предложит, как его найти и что подставлять, и сохранит это в «Свои правила»",
+  "menu.pick": "Создать правило для этого поля",
+  "refillFilled.hint": "Выключено: поля с введённым значением не трогаются, заполняются только пустые.",
+  "modalOnly.hint": "«Заполнить всё» всегда заполняет всю страницу, включая поля под окном.",
+  "sg.hint": "Подсказки: выберите вариант или пишите своими словами — «город», «6 цифр», «от 1 до 100», «@company.com»",
+  "sg.none": "Ничего не нашлось. Попробуйте другое слово или метод Faker, например person.firstName",
+  "sg.ph": "Напишите, что нужно: город, 6 цифр, от 1 до 100…",
+  "ignoreHidden.hint": "Невидимые и служебные поля остаются пустыми, как у реального пользователя.",
+  "fillReadonlyDates.hint": "Поля дат только для чтения с календарём получат дату в нужном формате. Включайте, если календарь не открывается при заполнении.",
+  "selectRetries.hint": "После выбора марки дождётся списка моделей и заполнит поля, которые появились позже.",
+  "fillFiles.hint": "Подбирает файл нужного формата: ваш из «Тестовых файлов» или сгенерированный. Уже прикреплённые не заменяются.",
+  "agreeAlways.hint": "Галочки согласия с условиями и политикой отмечаются всегда, независимо от режима чекбоксов.",
+  "typeChars.hint": "Медленнее, зато маски вроде +7 (___) ___-__-__ принимают значение правильно.",
+  "highlight.hint": "Заполненное поле на секунду подсвечивается зелёной рамкой.",
+  "about.what": "Что умеет",
+  "about.f1": "Определяет смысл поля по подписи, атрибутам, тексту рядом и заголовку секции и заполняет согласованными данными на 76 языках.",
+  "about.f2": "Работает с кастомными списками, datepicker, масками, чекбоксами со скрытым input, модальными окнами, shadow DOM и iframe.",
+  "about.f3": "Прикрепляет файлы в поля загрузки: определяет ожидаемый формат по accept, тексту зоны и подписи, берёт ваш тестовый файл этого формата или генерирует валидный PDF, DOCX, XLSX, CSV, JSON, XML, ZIP, WAV или картинку.",
+  "about.f4": "Свои правила по RegExp, CSS или XPath. Создаются прямо на странице кнопкой «Правило для поля»: кликаете поле, Formigo предлагает локатор и значение.",
+  "about.f5": "Шаблоны для любого из 85 типов полей, импорт и экспорт настроек одним файлом.",
+  "pick.bar": "Кликните поле, для которого нужно правило. Esc — выход.",
+  "pick.title": "Новое правило",
+  "pick.detected": "сейчас определяется как",
+  "pick.locators": "Как найти поле",
+  "pick.actions": "Что подставлять",
+  "pick.tips": "Рекомендации",
+  "pick.rec": "рекомендуем",
+  "pick.uniqueShort": "уникален",
+  "pick.noneShort": "не найден",
+  "pick.unique": "Находит только это поле",
+  "pick.many": "Находит полей: {n}, правило сработает для всех",
+  "pick.none": "Ничего не находит на странице",
+  "pick.bad": "Ошибка в шаблоне поиска",
+  "pick.m.regex": "Подпись",
+  "pick.m.css": "CSS",
+  "pick.m.xpath": "XPath",
+  "pick.why.test": "Атрибут для автотестов: самый надёжный вариант.",
+  "pick.why.id": "Постоянный id: надёжно, пока его не переименуют.",
+  "pick.why.name": "Атрибут name: обычно не меняется при правках дизайна.",
+  "pick.why.bind": "Привязка к модели Angular/Vue: стабильна, пока не меняют код формы.",
+  "pick.why.aria": "aria-label: зависит от текста и языка страницы.",
+  "pick.why.label": "Точная подпись поля: переживёт смену вёрстки, но не перевод страницы.",
+  "pick.why.xpath": "XPath от подписи: следующий элемент после label с этим текстом.",
+  "pick.why.ph": "Placeholder: меняется вместе с текстами интерфейса.",
+  "pick.why.genId": "id похож на сгенерированный и, скорее всего, изменится после перезагрузки.",
+  "pick.why.path": "Путь по DOM: ломается при любой правке вёрстки, используйте в крайнем случае.",
+  "pick.act.type": "Тип: {type}",
+  "pick.act.keep": "Всегда «{v}»",
+  "pick.act.some": "Случайный из первых вариантов",
+  "pick.act.check": "Всегда отмечать",
+  "pick.act.uncheck": "Всегда снимать",
+  "pick.act.qaMail": "Тестовая почта qa+…",
+  "pick.act.digits": "Только цифры",
+  "pick.act.words": "Пара слов",
+  "pick.act.list": "Свой список",
+  "pick.act.skip": "Не трогать поле",
+  "pick.tip.genId": "id «{id}» выглядит сгенерированным: не стройте на нём правило.",
+  "pick.tip.noStable": "Стабильного уникального признака нет. Попросите разработчиков добавить data-testid или выберите поиск по подписи.",
+  "pick.tip.label": "Поиск по подписи не сработает, если открыть страницу на другом языке.",
+  "pick.tip.order": "Правило встанет первым в «Своих правилах» и сразу заполнит поле.",
+  "pick.again": "Выбрать другое",
+  "pick.save": "Сохранить правило",
+  "pick.cancel": "Закрыть",
+  "pick.saved": "Правило сохранено в «Свои правила»",
+   "dbg.outside": "вне окна",
+  "dbg.outsideHint": "Открыто модальное окно: «Заполнить всё» заполнит только его. Если это не окно, выключите «заполнять только окно» в настройках.",
+ "rules.pickHint": "Правило можно создать прямо на странице: «Правило для поля» в попапе, Alt+V или правый клик по полю.",
+};
+
+const EN = {
+  'tab.settings': 'Settings', 'tab.data': 'Files & types', 'tab.rules': 'Custom rules', 'tab.share': 'Import & export', 'tab.about': 'About',
+  'tagline': 'Test data in your forms with one keystroke',
+  'sec.interface': 'Interface', 'uiLang': 'Interface language', 'theme': 'Theme', 'theme.auto': 'System', 'theme.light': 'Light', 'theme.dark': 'Dark',
+  'sec.fill': 'Filling', 'locale': 'Data language', 'checkboxMode': 'Checkboxes', 'cb.random': 'Random', 'cb.check': 'Always check', 'cb.uncheck': 'Always uncheck',
+  'imageMode': 'Upload images', 'img.smart': 'By meaning: face, document, photo', 'img.simple': 'Plain 15×15 PNG',
+  'passwordMode': 'Password', 'pw.random': 'Random strong', 'pw.fixed': 'Fixed', 'fixedPassword': 'Fixed password',
+  'emailDomain': 'E-mail domain', 'emailDomain.ph': 'empty = random',
+  'refillFilled': 'Refill fields that already have a value', 'modalOnly': '“Current form” fills only the open dialog',
+  'ignoreHidden': 'Skip hidden fields', 'fillReadonlyDates': 'Fill read-only date fields (datepicker)',
+  'selectRetries': 'Refill dependent lists and newly shown fields', 'fillFiles': 'Attach files to upload fields',
+  'agreeAlways': 'Always tick “I agree to the terms”', 'typeChars': 'Type character by character (masked inputs)', 'highlight': 'Highlight filled fields',
+  'ignoreSelectors': 'Never touch fields matching these CSS selectors, one per line',
+  'sec.hotkeys': 'Hotkeys', 'hotkeys.hint': 'Click a box and press the shortcut. Backspace clears it.',
+  'hk.fillAll': 'Fill everything', 'hk.fillForm': 'Current form', 'hk.fillField': 'Current field', 'hk.debug': 'Show field types',
+  'hk.none': 'not set', 'hk.needMod': 'Add Ctrl, Alt or Cmd so typing is not affected',
+  'saved': 'Saved', 'reset': 'Reset all settings', 'reset.confirm': 'Reset all settings, rules and type patterns?', 'reset.done': 'Settings reset',
+  'sec.files': 'Test files', 'files.hint': 'Files are stored inside the extension. Formigo works out the expected format from accept, the drop zone text and the label (PDF, DOCX, XLSX, CSV, image…), uses your file of that format, or generates a valid one.',
+  'files.add': 'Add files', 'files.none': 'No files yet: files of the right format are generated.', 'files.added': 'Files added', 'remove': 'Remove',
+  'sec.types': 'Field types', 'types.hint': 'Detection: a RegExp matched against the label, name/id and nearby text, \\b is a word boundary. Custom value: /RegExp/, a {{…}} template or one option per line.',
+  'types.filter': 'Find a type', 'types.test': 'Test a label, e.g. “Device IMEI #1”', 'types.changed': 'Changed only',
+  'types.col.type': 'Type', 'types.col.pattern': 'Detection', 'types.col.value': 'Custom value',
+  'types.off': 'detection disabled', 'types.ctxOnly': 'context only, you can add your own RegExp', 'types.builtin': 'built-in generator',
+  'types.reset': 'Restore built-in', 'types.badRe': 'Invalid RegExp, the built-in one is used', 'types.none': 'not recognized (text)',
+  'example': 'example', 'error': 'error', 'skipped': 'field is skipped',
+  'sec.rules': 'Custom rules', 'rules.hint': 'Checked top to bottom and take priority over detection. A field’s label is shown in the “Show field types” tooltip.',
+  'rules.on': 'On', 'rules.note': 'Note', 'rules.match': 'Match', 'rules.pattern': 'Pattern', 'rules.vtype': 'Value', 'rules.value': 'What to insert',
+  'rules.add': 'Add rule', 'rules.empty': 'No rules yet.', 'up': 'Up', 'down': 'Down',
+  'v.faker': 'Faker', 'v.template': 'Template', 'v.regex': 'RegExp', 'v.list': 'List', 'v.type': 'Type', 'v.fixed': 'Fixed', 'v.skip': 'Skip',
+  'rules.help': 'Value types',
+  'help.faker': 'Faker: person.firstName, number.int({"min":1,"max":99}), string.numeric(10). All methods: fakerjs.dev/api',
+  'help.template': 'Template: qa+{{string.alphanumeric(6)}}@example.com, {{profile.lastName}} {{profile.firstName}}, {{type.inn}}',
+  'help.regex': 'RegExp: [A-Z]{2}-\\d{4}. List: one option per line. Type: a built-in type. Fixed: as is, true/false for checkboxes.',
+  'sec.export': 'Export', 'export.hint': 'A small .formigo.json file with settings, rules and type patterns that is easy to send to a colleague.',
+  'export.file': 'Download file', 'export.rulesOnly': 'Rules and type patterns only', 'export.copy': 'Copy as text', 'export.copied': 'Copied to clipboard',
+  'sec.import': 'Import', 'import.file': 'Load file', 'import.paste': 'Paste text', 'import.mode': 'On import',
+  'import.merge': 'Add to mine', 'import.replace': 'Replace everything', 'import.prompt': 'Paste the settings text:',
+  'import.notJson': 'This is not a settings file.', 'import.empty': 'No Formigo settings in the file.',
+  'import.replaced': 'Settings replaced, rules: {n}.', 'import.merged': 'Rules added: {n}, duplicates skipped: {d}.',
+  'about.text': 'Formigo fills forms with realistic test data powered by Faker, and upload fields with files of the right format: your preloaded ones or generated ones.',
+  'about.version': 'Version', 'about.fonts': 'Inter and JetBrains Mono fonts are distributed under the SIL Open Font License 1.1 and may be used freely in any project, including commercial ones.',
+  'about.faker': 'Data is generated by the Faker library (MIT).', 'about.privacy': 'The extension sends nothing to third-party servers, except image requests for upload fields in “By meaning” mode.',
+  'about.keys': 'Default hotkeys',
+  'popup.fillAll': 'Fill everything', 'popup.fillForm': 'Current form', 'popup.fillField': 'Current field', 'popup.debug': 'Show field types',
+  'popup.refill': 'Refill filled fields', 'popup.settings': 'Settings', 'popup.filled': 'Fields filled: {n}', 'popup.labeled': 'Fields labeled: {n}',
+  'popup.langSaved': 'Data language saved', 'popup.refillOn': 'Filled fields will be overwritten', 'popup.refillOff': 'Only empty fields are filled',
+  'menu.fillAll': 'Fill all fields on the page', 'menu.fillForm': 'Fill the current form', 'menu.fillField': 'Fill only this field',
+  'menu.debug': 'Show field types', 'menu.options': 'Settings',
+  "hk.pick": "Rule for a field",
+  "popup.pick": "Rule for a field",
+ "popup.pickTitle": "Click a field on the page: Formigo suggests how to find it and what to insert, and saves that to “Custom rules”",
+  "menu.pick": "Create a rule for this field",
+  "refillFilled.hint": "Off: fields that already have a value are left alone, only empty ones are filled.",
+  "modalOnly.hint": "“Fill all” always fills the whole page, including fields behind the dialog.",
+  "sg.hint": "Suggestions: pick one or describe it in your own words, like “city”, “6 digits”, “1 to 100”, “@company.com”",
+  "sg.none": "Nothing found. Try another word or a Faker method such as person.firstName",
+  "sg.ph": "Describe it: city, 6 digits, 1 to 100…",
+  "ignoreHidden.hint": "Invisible and service fields stay empty, just like with a real user.",
+  "fillReadonlyDates.hint": "Read-only date fields with a calendar get a date in the right format. Turn on if the calendar does not open while filling.",
+  "selectRetries.hint": "After picking a make it waits for the model list and fills fields that appear later.",
+  "fillFiles.hint": "Picks a file of the expected format: yours from “Test files” or a generated one. Already attached files are kept.",
+  "agreeAlways.hint": "Consent checkboxes for terms and policies are always ticked, whatever the checkbox mode.",
+  "typeChars.hint": "Slower, but masks like +1 (___) ___-____ accept the value correctly.",
+  "highlight.hint": "A filled field gets a green outline for a second.",
+  "about.what": "What it does",
+  "about.f1": "Works out what a field means from its label, attributes, nearby text and section heading, and fills consistent data in 76 languages.",
+  "about.f2": "Handles custom dropdowns, datepickers, masks, checkboxes with hidden inputs, modals, shadow DOM and iframes.",
+  "about.f3": "Attaches files to upload fields: detects the expected format from accept, drop zone text and label, then uses your test file of that format or generates a valid PDF, DOCX, XLSX, CSV, JSON, XML, ZIP, WAV or image.",
+  "about.f4": "Custom rules by RegExp, CSS or XPath, created right on the page with “Rule for a field”: click a field and Formigo suggests a locator and a value.",
+  "about.f5": "Templates for any of the 85 field types, settings import and export in a single file.",
+  "pick.bar": "Click the field you want a rule for. Esc to exit.",
+  "pick.title": "New rule",
+  "pick.detected": "currently detected as",
+  "pick.locators": "How to find the field",
+  "pick.actions": "What to insert",
+  "pick.tips": "Recommendations",
+  "pick.rec": "recommended",
+  "pick.uniqueShort": "unique",
+  "pick.noneShort": "not found",
+  "pick.unique": "Matches only this field",
+  "pick.many": "Matches {n} fields, the rule applies to all of them",
+  "pick.none": "Matches nothing on the page",
+  "pick.bad": "Error in the pattern",
+  "pick.m.regex": "Label",
+  "pick.m.css": "CSS",
+  "pick.m.xpath": "XPath",
+  "pick.why.test": "Test automation attribute: the most reliable option.",
+  "pick.why.id": "Stable id: reliable until someone renames it.",
+  "pick.why.name": "name attribute: usually survives design changes.",
+  "pick.why.bind": "Angular/Vue model binding: stable while the form code stays the same.",
+  "pick.why.aria": "aria-label: depends on the page text and language.",
+  "pick.why.label": "Exact field label: survives layout changes, but not a translated page.",
+  "pick.why.xpath": "XPath from the label: the next element after the label with this text.",
+  "pick.why.ph": "Placeholder: changes along with interface copy.",
+  "pick.why.genId": "This id looks generated and will probably change after a reload.",
+  "pick.why.path": "DOM path: breaks with any layout change, use as a last resort.",
+  "pick.act.type": "Type: {type}",
+  "pick.act.keep": "Always “{v}”",
+  "pick.act.some": "Random of the first options",
+  "pick.act.check": "Always check",
+  "pick.act.uncheck": "Always uncheck",
+  "pick.act.qaMail": "Test e-mail qa+…",
+  "pick.act.digits": "Digits only",
+  "pick.act.words": "A few words",
+  "pick.act.list": "Own list",
+  "pick.act.skip": "Leave the field alone",
+  "pick.tip.genId": "The id “{id}” looks generated: do not build a rule on it.",
+  "pick.tip.noStable": "There is no stable unique attribute. Ask developers to add data-testid, or match by label.",
+  "pick.tip.label": "Matching by label stops working if the page is opened in another language.",
+  "pick.tip.order": "The rule goes to the top of “Custom rules” and fills the field right away.",
+  "pick.again": "Pick another",
+  "pick.save": "Save rule",
+  "pick.cancel": "Close",
+  "pick.saved": "Rule saved to “Custom rules”",
+   "dbg.outside": "outside modal",
+  "dbg.outsideHint": "A modal is open: “Fill everything” fills only it. If this is not a modal, turn off “fill only the modal” in settings.",
+ "rules.pickHint": "You can create a rule right on the page: “Rule for a field” in the popup, Alt+V or right-click a field.",
+};
+
+export const UI_LANGS = [
+  ['en', 'English'], ['ru', 'Русский'], ['uk', 'Українська'], ['es', 'Español'], ['pt', 'Português'], ['de', 'Deutsch'],
+  ['fr', 'Français'], ['it', 'Italiano'], ['pl', 'Polski'], ['nl', 'Nederlands'], ['tr', 'Türkçe'], ['id', 'Bahasa Indonesia'],
+  ['vi', 'Tiếng Việt'], ['hi', 'हिन्दी'], ['ar', 'العربية'], ['zh', '简体中文'], ['ja', '日本語'], ['ko', '한국어'],
+];
+const RTL = new Set(['ar']);
+// ru and en are built in; other dictionaries live in i18n/<code>.json and load on demand
+const DICTS = { ru: RU, en: EN };
+
+export function defaultUiLang() {
+  const l = ((typeof navigator !== 'undefined' && navigator.language) || 'en').toLowerCase();
+  if (/^(be|kk|ky|uz|tg)/.test(l)) return 'ru';
+  const code = l.split(/[-_]/)[0];
+  return UI_LANGS.some(([c]) => c === code) ? code : 'en';
+}
+
+async function fetchDict(lang) {
+  // extension pages read the file themselves, the content script asks the background
+  if (typeof location !== 'undefined' && location.protocol !== 'chrome-extension:') return chrome.runtime.sendMessage({ cmd: 'i18n', lang });
+  const r = await fetch(chrome.runtime.getURL(`i18n/${lang}.json`));
+  return r.ok ? r.json() : null;
+}
+export async function loadUiLang(lang) {
+  if (!lang || DICTS[lang] || !UI_LANGS.some(([c]) => c === lang)) return;
+  try { const d = await fetchDict(lang); if (d) DICTS[lang] = d; } catch { /* stays English */ }
+}
+export async function useUiLang(lang) { await loadUiLang(lang); setUiLang(lang); }
+export function getDict(lang) { return DICTS[lang]; }
+
+let current = 'ru';
+export function setUiLang(lang) { current = DICTS[lang] ? lang : 'en'; }
+export function uiLang() { return current; }
+export function t(key, vars) {
+  let s = DICTS[current][key] ?? EN[key] ?? key;
+  if (vars) for (const [k, v] of Object.entries(vars)) s = s.replace(`{${k}}`, v);
+  return s;
+}
+export function menuTitle(key, lang) { return (DICTS[lang] || EN)[key] ?? EN[key]; }
+
+// data-i18n="key" → text, data-i18n-ph="key" → placeholder, data-i18n-title="key" → title
+export function applyI18n(root = document) {
+  document.documentElement.lang = current;
+  document.documentElement.dir = RTL.has(current) ? 'rtl' : 'ltr';
+  root.querySelectorAll('[data-i18n]').forEach((n) => { n.textContent = t(n.dataset.i18n); });
+  root.querySelectorAll('[data-i18n-ph]').forEach((n) => { n.placeholder = t(n.dataset.i18nPh); });
+  root.querySelectorAll('[data-i18n-title]').forEach((n) => { n.title = t(n.dataset.i18nTitle); });
+}
+
+// Theme: auto | light | dark
+export function applyTheme(theme) {
+  if (theme === 'light' || theme === 'dark') document.documentElement.dataset.theme = theme;
+  else delete document.documentElement.dataset.theme;
+}

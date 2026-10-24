@@ -1,0 +1,17 @@
+{
+  "extName": {
+    "message": "Formigo — 智能表单填充工具"
+  },
+  "extDesc": {
+    "message": "借助 Faker 为表单填入逼真的测试数据：按上下文识别字段、自定义规则、70 多种数据语言、格式正确的文件。"
+  },
+  "cmdFillAll": {
+    "message": "填写页面上的所有字段"
+  },
+  "cmdFillForm": {
+    "message": "填写当前表单"
+  },
+  "cmdFillField": {
+    "message": "填写当前字段"
+  }
+}

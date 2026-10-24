@@ -1,0 +1,17 @@
+<!doctype html><html><head><meta charset="utf-8"><style>.hidden{display:none}.form-check label{display:inline-block;width:14px;height:14px;border:1px solid #333}.form-check label.on{background:#4f46e5}</style></head><body>
+<ngb-modal-window role="dialog" aria-modal="true" class="modal show" style="position:fixed;inset:0;background:#0006;display:block">
+<div class="modal-content" style="background:#fff;margin:30px auto;width:500px;padding:10px"><div class="modal-header"><h4 class="modal-title">Add user</h4></div><form>
+<div class="form-group"><div class="form-group-head"><label>*Username</label></div><div class="form-group-body"><input name="username"></div></div>
+<div class="form-group"><div class="form-check"><input type="checkbox" name="isTechnician" tabindex="0" class="hidden" id="ng"><label></label><span>Is technician</span></div></div>
+<div class="form-group"><div class="form-check"><input type="checkbox" name="isAdmin" class="hidden"><label></label><span>Is admin</span></div></div>
+</form></div></ngb-modal-window>
+<script>
+window.model = {};
+// like an Angular component: clicking the "box" updates the model and the input mirrors it ([checked]); clicks on the input itself are ignored
+const ng = document.getElementById('ng'); let v = false;
+ng.addEventListener('click', (e) => { e.preventDefault(); });
+ng.nextElementSibling.addEventListener('click', () => { v = !v; window.model.isTechnician = v; setTimeout(() => { ng.checked = v; ng.nextElementSibling.classList.toggle('on', v); }); });
+// regular: change on the input itself
+document.querySelector('[name=isAdmin]').addEventListener('change', (e) => { window.model.isAdmin = e.target.checked; });
+document.querySelector('[name=username]').addEventListener('input', (e) => { window.model.username = e.target.value; });
+</script></body></html>

@@ -1,0 +1,12 @@
+<!doctype html><html><head><meta charset="utf-8"></head><body><form>
+<div class="dz"><label>Contract</label><input type="file" name="f1" accept="application/pdf"></div>
+<div class="dz"><p>Upload CSV file with clients</p><input type="file" name="f2"></div>
+<div class="dz"><label>Agreement (Word)</label><input type="file" name="f3" accept=".doc,.docx"></div>
+<div class="dz"><label>Logo</label><input type="file" name="f4" accept="image/png"></div>
+<div class="dz"><p>Contract scan, PDF up to 5 MB</p><input type="file" name="f5" accept="image/*,application/pdf"></div>
+<div class="dz"><p>Price list in Excel</p><input type="file" name="f6"></div>
+<div class="dz"><p>Bank statement</p><input type="file" name="f7"></div>
+<div class="dz"><p>Voice message (mp3)</p><input type="file" name="f8" accept="audio/*"></div>
+<div class="dz"><p>Archive with documents</p><input type="file" name="f9" accept=".zip"></div>
+<div class="dz"><p>Attach JSON config</p><input type="file" name="f10" accept=".json,application/json"></div>
+</form><script>window.model={};document.querySelectorAll('input[type=file]').forEach(i=>i.addEventListener('change',async()=>{const f=i.files[0];const b=new Uint8Array(await f.slice(0,4).arrayBuffer());window.model[i.name]=f.name.replace(/-\d+/,'')+' | '+f.type+' | '+f.size+'B | '+[...b].map(x=>x.toString(16).padStart(2,'0')).join('')}))</script></body></html>

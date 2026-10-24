@@ -1,0 +1,7 @@
+{
+  "extName": { "message": "Formigo — remplissage de formulaires" },
+  "extDesc": { "message": "Remplit les formulaires avec des données de test réalistes (Faker) : détection contextuelle, règles perso, 70+ langues de données." },
+  "cmdFillAll": { "message": "Remplir tous les champs de la page" },
+  "cmdFillForm": { "message": "Remplir le formulaire actuel" },
+  "cmdFillField": { "message": "Remplir le champ actuel" }
+}

@@ -1,0 +1,17 @@
+{
+  "extName": {
+    "message": "Formigo — akıllı form doldurucu"
+  },
+  "extDesc": {
+    "message": "Formları Faker ile gerçekçi test verisiyle doldurun: bağlamlı alan algılama, özel kurallar, 70+ veri dili, doğru türde dosyalar."
+  },
+  "cmdFillAll": {
+    "message": "Sayfadaki tüm alanları doldur"
+  },
+  "cmdFillForm": {
+    "message": "Geçerli formu doldur"
+  },
+  "cmdFillField": {
+    "message": "Geçerli alanı doldur"
+  }
+}

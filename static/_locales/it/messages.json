@@ -1,0 +1,7 @@
+{
+  "extName": { "message": "Formigo — compilatore di moduli" },
+  "extDesc": { "message": "Compila i moduli con dati di test realistici (Faker): riconoscimento dei campi dal contesto, regole personali, 70+ lingue dei dati." },
+  "cmdFillAll": { "message": "Compila tutti i campi della pagina" },
+  "cmdFillForm": { "message": "Compila il modulo corrente" },
+  "cmdFillField": { "message": "Compila il campo corrente" }
+}

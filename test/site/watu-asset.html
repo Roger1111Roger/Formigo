@@ -1,0 +1,49 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Back office</title>
+<style>.dropdown-menu{display:none}.dropdown-menu.show{display:block}.hidden{display:none}
+ngb-modal-window{position:fixed;inset:0;background:#0006;display:block;overflow:auto}.modal-content{background:#fff;margin:30px auto;width:700px;padding:10px}
+.form-row{display:flex;gap:10px}.form-group{margin:4px}</style></head>
+<body class="app modal-open">
+<app-root aria-hidden="true"><main-menu><div ngbdropdown class="app-control dropdown"><span ngbdropdowntoggle class="dropdown-toggle">Assets</span>
+<div ngbdropdownmenu class="dropdown-menu"><ul><li class="dropdown-item"><a href="/#/home">Mifos</a></li></ul></div></div></main-menu>
+<form data-test="asset-filter-form"><div class="input-row">
+<app-filter-text-input name="plate" label="Plate#"><div class="form-group"><div class="form-group-head"><label>Plate#</label></div><div class="form-group-body"><input type="text" ngmodel="" data-test="filter-text-input-input-2" placeholder="Input value"></div></div></app-filter-text-input>
+<app-filter-text-input name="clientName"><div class="form-group"><div class="form-group-head"><label>Clients name</label></div><div class="form-group-body"><input type="text" data-test="filter-text-input-input-2" placeholder="Input value"></div></div></app-filter-text-input>
+</div></form></app-root>
+<ngb-modal-window tabindex="-1" aria-modal="true" role="dialog" class="d-block modal fade show"><div role="document" class="modal-dialog modal-lg"><div class="modal-content"><asset-register-modal-form>
+<div class="modal-header"><h4 class="modal-title">Register asset</h4></div>
+<div class="modal-body"><form novalidate data-test="asset-register-modal-form-form">
+<div class="form-row-group"><div class="form-row">
+<div class="form-group"><div class="form-group-head"><label>*Category</label></div><div class="form-group-body"><select id="cat" data-test="asset-register-modal-form-select-1" class="custom-select"><option disabled selected value=""> -- Select type -- </option><option value="1"> Motor cycle</option><option value="3"> Car</option></select></div></div>
+<div class="form-group"><div class="form-group-head"><label>*Make</label></div><div class="form-group-body"><select id="make" data-test="asset-register-modal-form-select-2" class="custom-select"><option hidden selected value="null"> -- Select make -- </option><option value="7"> Bajaj</option><option value="108"> Ferrari</option></select></div></div>
+<div class="form-group"><div class="form-group-head"><label>*Model</label></div><div class="form-group-body"><select id="model" data-test="asset-register-modal-form-select-3" class="custom-select"><option hidden selected value="null"> -- Select model -- </option></select></div></div>
+</div></div>
+<div class="form-row-group"><div class="form-row">
+<div class="form-group ic-r"><div class="form-group-head"><label>*Registration#</label></div><div class="form-group-body"><input name="plate" data-test="asset-register-modal-form-plate-input"></div></div>
+<div class="form-group ic-r"><div class="form-group-head"><label>*Chassis#</label></div><div class="form-group-body"><input name="chassis" data-test="asset-register-modal-form-chassis-input"><i class="warning default">!</i></div></div>
+<div class="form-group ic-r"><div class="form-group-head"><label>*Engine#</label></div><div class="form-group-body"><input name="engine" data-test="asset-register-modal-form-engine-input"></div></div>
+</div></div>
+<div class="form-row-group"><div class="form-row">
+<div class="form-group"><div class="form-group-head"><label>*Color</label></div><div class="form-group-body"><select id="color" class="custom-select"><option disabled selected value=""> -- Select color -- </option><option value="48">beige</option><option value="3">black</option><option value="7">blue</option></select></div></div>
+<div class="form-group"><div class="form-group-head"><label>Body type</label></div><div class="form-group-body"><select id="body" class="custom-select"><option selected value=""> -- Select body type -- </option></select></div></div>
+<div class="form-group"><div class="form-group-head"><label>Transmission</label></div><div class="form-group-body"><select id="trans" class="custom-select"><option selected value=""> -- Select transmission -- </option></select></div></div>
+</div></div>
+<div class="form-row-group"><div class="form-row">
+<div class="form-group"><div class="form-group-head"><label>Year</label></div><div class="form-group-body"><input name="year" data-test="asset-register-modal-form-year-input"></div></div>
+<div class="form-group"><div class="form-group-head"><label>Engine volume</label></div><div class="form-group-body"><input name="engineVol" placeholder="Engine volume ccm"></div></div>
+<div class="form-group"><div class="form-group-head"><label>Odometer</label></div><div class="form-group-body"><input name="odometer" placeholder="Odometer in km"></div></div>
+</div></div>
+<div class="form-row-group"><div class="form-row">
+<div class="form-group ic-r date-input"><div class="form-group-head"><label>Inspection end date</label><div class="clear"> Clear </div></div><div class="form-group-body"><input placeholder="yyyy-mm-dd" readonly name="dp2" ngbdatepicker class="form-control"><i class="ic-calendar"></i></div></div>
+<div class="form-group ic-r date-input"><div class="form-group-head"><label>Vehicle registration date</label><div class="clear"> Clear </div></div><div class="form-group-body"><input placeholder="yyyy-mm-dd" readonly name="dv" ngbdatepicker class="form-control"><i class="ic-calendar"></i></div></div>
+</div></div>
+<button type="submit">Register</button>
+</form></div></asset-register-modal-form></div></div></ngb-modal-window>
+<script>
+window.model = {};
+document.querySelectorAll('input,select').forEach((el) => el.addEventListener('input', () => { window.model[el.name || el.id] = el.value; }));
+document.querySelectorAll('select').forEach((el) => el.addEventListener('change', () => { window.model[el.name || el.id] = el.value; }));
+const add = (sel, items) => { const s = document.getElementById(sel); items.forEach(([v, t]) => s.add(new Option(t, v))); };
+document.getElementById('make').addEventListener('change', (e) => setTimeout(() => add('model', e.target.value === '7' ? [['1', 'Boxer'], ['2', 'RE']] : [['3', 'F40']]), 250));
+document.getElementById('cat').addEventListener('change', () => setTimeout(() => { add('body', [['1', 'Sedan'], ['2', 'SUV']]); add('trans', [['1', 'Manual'], ['2', 'Automatic']]); }, 250));
+</script>
+</body></html>

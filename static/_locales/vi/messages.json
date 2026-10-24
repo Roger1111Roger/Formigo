@@ -1,0 +1,17 @@
+{
+  "extName": {
+    "message": "Formigo — điền biểu mẫu thông minh"
+  },
+  "extDesc": {
+    "message": "Điền biểu mẫu bằng dữ liệu thử thực tế từ Faker: nhận diện trường theo ngữ cảnh, quy tắc riêng, 70+ ngôn ngữ dữ liệu, tệp đúng loại."
+  },
+  "cmdFillAll": {
+    "message": "Điền tất cả trường trên trang"
+  },
+  "cmdFillForm": {
+    "message": "Điền biểu mẫu hiện tại"
+  },
+  "cmdFillField": {
+    "message": "Điền trường hiện tại"
+  }
+}

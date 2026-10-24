@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Formigo test bench</title>
+<style>
+  body { font: 14px/1.4 system-ui, sans-serif; margin: 0; padding: 24px; background: #f4f2ed; color: #262b31; }
+  h1 { margin: 0 0 4px; font-size: 20px; }
+  .lead { margin: 0 0 20px; color: #6f737a; }
+  section { background: #fff; border: 1px solid #e1ddd4; border-radius: 8px; padding: 16px; margin-bottom: 16px; }
+  section h2 { margin: 0 0 12px; font-size: 15px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+  label { display: grid; gap: 4px; font-size: 12px; color: #6f737a; }
+  input, select, textarea { font: inherit; padding: 6px 8px; border: 1px solid #cdc8bd; border-radius: 6px; }
+  .row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+  .choices { display: flex; gap: 8px; }
+  .langs div { cursor: pointer; padding: 6px 10px; border: 1px solid #cdc8bd; border-radius: 6px; }
+  .langs div.selected { background: #34465a; color: #fff; }
+  /* as in Angular CDK 19+: the overlay is opened via popover and lives in the top layer */
+  .cdk-overlay-popover { position: fixed; inset: 0; width: 100%; height: 100%; margin: 0; padding: 0; border: 0; background: transparent; display: none; }
+  .cdk-overlay-popover:popover-open { display: flex; align-items: center; justify-content: center; }
+  .cdk-overlay-backdrop { position: absolute; inset: 0; background: rgba(0, 0, 0, .32); }
+  .dialog { position: relative; background: #fff; border-radius: 8px; padding: 20px; width: 520px; max-width: 94vw; box-shadow: 0 8px 30px rgba(0, 0, 0, .25); }
+  /* classic z-index modal (Bootstrap) */
+  .modal { position: fixed; inset: 0; background: rgba(0, 0, 0, .4); display: none; align-items: center; justify-content: center; z-index: 1050; }
+  .modal.show { display: flex; }
+</style>
+</head>
+<body>
+<h1>Formigo test bench</h1>
+<p class="lead">One page for end-to-end checks of the extension: <code>node test/e2e.mjs</code>.</p>
+
+<section id="filters">
+  <h2>Filters outside any form</h2>
+  <div class="row">
+    <input id="f-user" name="username" placeholder="Name or username">
+    <input id="f-email" name="email" placeholder="E-mail">
+  </div>
+</section>
+
+<section>
+  <h2>Registration form</h2>
+  <form id="reg" class="grid" onsubmit="return false">
+    <label>First name <input id="r-first" name="firstName"></label>
+    <label>Last name <input id="r-last" name="lastName"></label>
+    <label>E-mail <input id="r-email" type="email" name="email"></label>
+    <label>Phone <input id="r-phone" type="tel" name="phone"></label>
+    <label>Date of birth <input id="r-dob" type="date" name="dob"></label>
+    <label>City <input id="r-city" name="city"></label>
+    <label>Employee ID <input id="r-emp" name="employeeId" data-testid="employee-id"></label>
+    <label>Country
+      <select id="r-country" name="country"><option value="">Select…</option><option>Kenya</option><option>Nigeria</option><option>Uganda</option></select>
+    </label>
+    <label>Password <input id="r-pass" type="password" name="password"></label>
+    <label>Comment <textarea id="r-comment" name="comment"></textarea></label>
+    <label class="row"><input id="r-agree" type="checkbox" name="agree"> I agree with the terms</label>
+  </form>
+</section>
+
+<section>
+  <h2>Selectable list</h2>
+  <div class="field">
+    <label>Let's select all</label>
+    <div class="langs" id="langs"><div>Java</div><div>Python</div><div>Go</div></div>
+  </div>
+</section>
+
+<section>
+  <h2>Dialogs</h2>
+  <div class="row">
+    <button id="open-popover" type="button">Open popover dialog</button>
+    <button id="open-modal" type="button">Open z-index modal</button>
+  </div>
+</section>
+
+<div class="cdk-overlay-popover" id="overlay" popover="manual">
+  <div class="cdk-overlay-backdrop"></div>
+  <div class="dialog" role="dialog" aria-modal="true" id="dlg">
+    <h2>New user</h2>
+    <div class="grid">
+      <label>Username <input id="d-user" name="username"></label>
+      <label>First name <input id="d-first" name="firstName"></label>
+      <label>Last name <input id="d-last" name="lastName"></label>
+      <label>E-mail <input id="d-email" type="email" name="email"></label>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="zmodal">
+  <div class="dialog" role="dialog" id="zdlg">
+    <h2>Edit asset</h2>
+    <label>Serial number <input id="z-serial" name="serialNumber"></label>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('#langs div').forEach((d) => d.addEventListener('click', (e) => {
+    if (!e.ctrlKey && !e.metaKey) document.querySelectorAll('#langs div').forEach((x) => x.classList.remove('selected'));
+    d.classList.toggle('selected');
+  }));
+  document.getElementById('open-popover').onclick = () => document.getElementById('overlay').showPopover();
+  document.getElementById('open-modal').onclick = () => document.getElementById('zmodal').classList.add('show');
+  // as in Angular Material: the page under the dialog is hidden from screen readers
+  window.openPopover = () => { document.getElementById('overlay').showPopover(); document.getElementById('d-user').focus(); };
+  window.closeAll = () => { const o = document.getElementById('overlay'); if (o.matches(':popover-open')) o.hidePopover(); document.getElementById('zmodal').classList.remove('show'); };
+  window.clearAll = () => document.querySelectorAll('input, textarea, select').forEach((el) => {
+    if (el.type === 'checkbox' || el.type === 'radio') el.checked = false; else el.value = '';
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,724 @@
+<!doctype html><html><head><meta charset="utf-8"><style>.ng-hide{display:none!important}.chosen-drop{display:none}.chosen-with-drop .chosen-drop{display:block}
+.dropdown-menu{display:none}.form-check input[type=checkbox]{position:absolute;opacity:0}.form-check label{display:inline-block;width:14px;height:14px;border:1px solid #333}
+ngb-modal-window{position:fixed;inset:0;background:#0006;display:block;overflow:auto;z-index:1050}.modal-content{background:#fff;margin:30px auto;width:700px;padding:10px}</style></head><body><div class="card well wiz-container ng-isolate-scope" current-step="step">
+    <div class="row ">
+    <div class="col-md-12 ">
+<h3 ng-hide="getEnabledSteps().length &gt; 1" class="ng-binding ng-hide">Create Client</h3> <ul class="progress-indicator" ng-show="getEnabledSteps().length &gt; 1">        <!-- ngRepeat: step in getEnabledSteps() --><li ng-repeat="step in getEnabledSteps()" ng-click="goTo(step, true)" ng-class="{'progress-current':step.selected,'progress-todo': !step.completed &amp;&amp; !step.selected, 'progress-done': step.completed &amp;&amp; !step.selected , 'progress-danger': step.danger &amp;&amp; !step.selected}" class="ng-binding ng-scope progress-current"><span class="bubble"></span><i class="fa fa-check ng-hide" ng-show="step.completed &amp;&amp; !step.selected"></i><i class="fa fa-repeat" ng-show="step.selected"></i><i class="fa fa-times ng-hide" ng-show="step.danger &amp;&amp; !step.selected"></i>Create Client        </li><!-- end ngRepeat: step in getEnabledSteps() --><li ng-repeat="step in getEnabledSteps()" ng-click="goTo(step, true)" ng-class="{'progress-current':step.selected,'progress-todo': !step.completed &amp;&amp; !step.selected, 'progress-done': step.completed &amp;&amp; !step.selected , 'progress-danger': step.danger &amp;&amp; !step.selected}" class="ng-binding ng-scope progress-todo"><span class="bubble"></span><i class="fa fa-check ng-hide" ng-show="step.completed &amp;&amp; !step.selected"></i><i class="fa fa-repeat ng-hide" ng-show="step.selected"></i><i class="fa fa-times ng-hide" ng-show="step.danger &amp;&amp; !step.selected"></i>Branch        </li><!-- end ngRepeat: step in getEnabledSteps() --></ul>    </div>
+    </div>
+    <div class="row ">
+    <div class="steps col-md-12" ng-transclude="">
+    <div ng-show="selected" ng-class="{current: selected, done: completed}" class="step ng-scope ng-isolate-scope current" ng-transclude="" icon="fa fa-circle-o" wz-title="Create Client">
+        <div class="card-content ng-scope">
+            <form name="createclientform" novalidate="" class="form-horizontal ng-invalid ng-dirty ng-valid-parse ng-invalid-pattern ng-valid-req ng-valid-required" rc-submit="submit()">
+               <api-validate><div class="alert ng-isolate-scope alert-danger ng-hide" ng-class="['alert-' + (type || 'warning'), closeable ? 'alert-dismissible' : null]" role="alert" uib-alert="" type="danger" ng-show="errorStatus || errorDetails.length &gt; 0">
+    <button ng-show="closeable" type="button" class="close ng-hide" ng-click="close({$event: $event})">
+        <span aria-hidden="true">×</span>
+        <span class="sr-only">Close</span>
+    </button>
+    <div ng-transclude=""><!-- ngRepeat: errorArray in errorDetails --></div>
+</div></api-validate>
+               <fieldset>
+                  <!--<legend>{{'label.heading.createclient' | translate}}</legend>-->
+                  <div class="form-group">
+                     <label class="control-label col-sm-2 ng-binding">
+                     Office <span ng-show="forceOffice == null" class="required">*</span>
+                     </label>
+                     <div class="col-sm-3">
+                        <div ng-show="forceOffice == null">
+                           <select chosen="offices" id="officeId" ng-model="formData.officeId" class="form-control ng-pristine ng-untouched ng-valid ng-not-empty" ng-options="office.id as office.name for office in offices" value="" ng-change="changeOffice(formData.officeId)" style="display: none;"><option label="Head Office" value="number:1" selected="selected">Head Office</option><option label="Mombasa Office" value="number:2">Mombasa Office</option><option label="Mariakani" value="number:3">Mariakani</option><option label="Likoni" value="number:4">Likoni</option><option label="Test Office" value="number:5">Test Office</option></select><div class="chosen-container chosen-container-single" style="width: 249px;" title="" id="officeId_chosen"><a class="chosen-single" tabindex="-1"><span>Head Office</span><div><b></b></div></a><div class="chosen-drop"><div class="chosen-search"><input type="text" autocomplete="off" style=""></div><ul class="chosen-results"></ul></div></div>
+                        </div>
+                        <div ng-show="forceOffice != null" class="ng-hide">
+                           <p class="form-control-static ng-binding"></p>
+                        </div>
+                     </div>
+                     <label class="control-label col-sm-2 ng-binding">Staff</label>
+                     <div class="col-sm-3">
+                        <select chosen="staffs" id="staffId" ng-model="formData.staffId" class="form-control ng-pristine ng-untouched ng-valid ng-empty" ng-options="staff.id as staff.displayName for staff in staffs" value="" style="display: none;"><option value="" class="ng-binding" selected="selected">--Select Staff--</option><option label="Swaleh, Omar" value="number:3">Swaleh, Omar</option><option label="Sopai, Hamisi Hassan" value="number:5">Sopai, Hamisi Hassan</option><option label="Gowi, Chrispine" value="number:6">Gowi, Chrispine</option><option label="Case, Special" value="number:7">Case, Special</option><option label="Nyamweya, Esther" value="number:30">Nyamweya, Esther</option><option label="Dudi, William" value="number:35">Dudi, William</option><option label="Muya, Ann" value="number:43">Muya, Ann</option><option label="Omondi Olale, Eddie" value="number:54">Omondi Olale, Eddie</option><option label="Ann, Bensonn" value="number:72">Ann, Bensonn</option><option label="Hamisi, Omar" value="number:81">Hamisi, Omar</option><option label="Tsuma, John" value="number:90">Tsuma, John</option><option label="Kenga, Alexander" value="number:94">Kenga, Alexander</option><option label="Ndege, Dominic" value="number:102">Ndege, Dominic</option><option label="Nyabuto, Clinton" value="number:114">Nyabuto, Clinton</option><option label="Clai Mwanyika, Kennedy" value="number:124">Clai Mwanyika, Kennedy</option><option label="Kioko, Onesmus" value="number:143">Kioko, Onesmus</option><option label="Nyaoke, Stevenford" value="number:147">Nyaoke, Stevenford</option><option label="Ouma, Lear" value="number:151">Ouma, Lear</option><option label="Khan, Nadeem" value="number:152">Khan, Nadeem</option><option label="Gulamali, Zulfikar" value="number:153">Gulamali, Zulfikar</option><option label="Malindi, C&amp;G" value="number:154">Malindi, C&amp;G</option><option label="Mwavula, Kenneth" value="number:155">Mwavula, Kenneth</option><option label="Njoki, Eunice" value="number:156">Njoki, Eunice</option><option label="Matano, Lucy Winnie" value="number:157">Matano, Lucy Winnie</option><option label="Amisi, Charles" value="number:158">Amisi, Charles</option><option label="Naivasha, Abson" value="number:159">Naivasha, Abson</option><option label="Nakuru, Abson" value="number:160">Nakuru, Abson</option><option label="Munanie, Miriam" value="number:161">Munanie, Miriam</option><option label="Mango, Donatta" value="number:165">Mango, Donatta</option><option label="Ngumo, Damaris" value="number:173">Ngumo, Damaris</option><option label="Makmuri, Dorothy" value="number:177">Makmuri, Dorothy</option><option label="Mwandaza, Matilda" value="number:181">Mwandaza, Matilda</option><option label="Voi, C&amp;G" value="number:191">Voi, C&amp;G</option><option label="Recovery, Dormant" value="number:199">Recovery, Dormant</option><option label="Onunga, Nick" value="number:203">Onunga, Nick</option><option label="Taveta, C&amp;G" value="number:204">Taveta, C&amp;G</option><option label="Baya, Raphael Mramba" value="number:205">Baya, Raphael Mramba</option><option label="Salasya, Vincent Mutimba" value="number:209">Salasya, Vincent Mutimba</option><option label="Muthoni, Martin Mwenda" value="number:213">Muthoni, Martin Mwenda</option><option label="Ogeto, Dorah" value="number:217">Ogeto, Dorah</option><option label="Recovery, Physical" value="number:225">Recovery, Physical</option><option label="Waema, Augustus" value="number:229">Waema, Augustus</option><option label="Recovery, Phone" value="number:235">Recovery, Phone</option><option label="Nelima, Valentine" value="number:239">Nelima, Valentine</option><option label="Kiplango Yego, Daniel" value="number:243">Kiplango Yego, Daniel</option><option label="Sibanda, Diana" value="number:244">Sibanda, Diana</option><option label="Mwai, Daniel" value="number:245">Mwai, Daniel</option><option label="Chirindi, Mishi" value="number:246">Chirindi, Mishi</option><option label="Sale, Secondary" value="number:250">Sale, Secondary</option><option label="Ngeresa, Stephen" value="number:254">Ngeresa, Stephen</option><option label="Njiru, Eric" value="number:258">Njiru, Eric</option><option label="Njogu, Betty" value="number:262">Njogu, Betty</option><option label="Mweu, Caroline" value="number:263">Mweu, Caroline</option><option label="Nguno, Sylvia" value="number:264">Nguno, Sylvia</option><option label="Asset, Repossessed" value="number:265">Asset, Repossessed</option><option label="Swidick, Rajab" value="number:266">Swidick, Rajab</option><option label="Orodi, Paul Mubweka" value="number:267">Orodi, Paul Mubweka</option><option label="Kamau, Mary Wanjiku" value="number:268">Kamau, Mary Wanjiku</option><option label="Chepng'etich, Stella" value="number:269">Chepng'etich, Stella</option><option label="Wanjiru, Maureen" value="number:273">Wanjiru, Maureen</option><option label="Mwakaba, Editon" value="number:277">Mwakaba, Editon</option><option label="Recovery, Priority" value="number:281">Recovery, Priority</option><option label="Recovery, Nonurgent" value="number:285">Recovery, Nonurgent</option><option label="Akello, Benard" value="number:293">Akello, Benard</option><option label="Chai, Lucas" value="number:297">Chai, Lucas</option><option label="Ogada, Isaiah" value="number:301">Ogada, Isaiah</option><option label="Gumo, Nicholus" value="number:302">Gumo, Nicholus</option><option label="Nyaigoti, Duke" value="number:303">Nyaigoti, Duke</option><option label="Ombachi, John" value="number:304">Ombachi, John</option><option label="Karie Ngala, Mercy" value="number:306">Karie Ngala, Mercy</option><option label="Kiangu Maina, Tabitha" value="number:307">Kiangu Maina, Tabitha</option><option label="Auctioneers, Nimag" value="number:308">Auctioneers, Nimag</option><option label="Aliu, Hamza" value="number:312">Aliu, Hamza</option><option label="Otieno Ochieng, Kevin" value="number:317">Otieno Ochieng, Kevin</option><option label="Bukachi, Steve" value="number:318">Bukachi, Steve</option><option label="Kibui, Peter" value="number:319">Kibui, Peter</option><option label="Malusi, Richard" value="number:320">Malusi, Richard</option><option label="Shuhuli, Thomas" value="number:321">Shuhuli, Thomas</option><option label="Onyango, Irene" value="number:322">Onyango, Irene</option><option label="Lalo, Lugwe" value="number:323">Lalo, Lugwe</option><option label="Mutua, Thomas" value="number:324">Mutua, Thomas</option><option label="Test, Officer" value="number:326">Test, Officer</option><option label="Ephrahim Ochola, Clinton" value="number:327">Ephrahim Ochola, Clinton</option><option label="Ondieki, Robert" value="number:328">Ondieki, Robert</option><option label="Wayu Omar, Abdalla" value="number:329">Wayu Omar, Abdalla</option><option label="Ndungu, Peter" value="number:330">Ndungu, Peter</option><option label="Ocholla, Kevin" value="number:336">Ocholla, Kevin</option><option label="Tsumah, Anderson" value="number:337">Tsumah, Anderson</option><option label="Muthoni, Winfred" value="number:338">Muthoni, Winfred</option><option label="Kabeyeka Odanga, Daizy" value="number:342">Kabeyeka Odanga, Daizy</option><option label="Atieno Omondi, Benadette" value="number:343">Atieno Omondi, Benadette</option><option label="Karanja Gitau, Samuel" value="number:344">Karanja Gitau, Samuel</option><option label="Kindochimu Mwamburi, Laban" value="number:345">Kindochimu Mwamburi, Laban</option><option label="Jumaa Benson, Charo" value="number:346">Jumaa Benson, Charo</option><option label="Wambui Mwangi, Faith" value="number:347">Wambui Mwangi, Faith</option><option label="Auma Amimo, Mary" value="number:348">Auma Amimo, Mary</option><option label="Murage Daimon, Sammy" value="number:349">Murage Daimon, Sammy</option><option label="Nyaigoti, Josephine" value="number:350">Nyaigoti, Josephine</option><option label="Jumaan, Aboud" value="number:351">Jumaan, Aboud</option><option label="Mballa, Sabina" value="number:352">Mballa, Sabina</option><option label="Muga, Phineas" value="number:353">Muga, Phineas</option><option label="Ogolla, Amos" value="number:354">Ogolla, Amos</option><option label="Barasa, Ketrine" value="number:355">Barasa, Ketrine</option><option label="Mganga, Hudson" value="number:356">Mganga, Hudson</option><option label="Wairimu, Winnie" value="number:357">Wairimu, Winnie</option><option label="Machau, Maureen" value="number:358">Machau, Maureen</option><option label="Odero, Martin" value="number:359">Odero, Martin</option><option label="Waithaka, Magdalene" value="number:361">Waithaka, Magdalene</option><option label="Malenje, Geoffrey" value="number:362">Malenje, Geoffrey</option><option label="Okuku, Silas" value="number:363">Okuku, Silas</option><option label="Suspense, Donatta" value="number:364">Suspense, Donatta</option><option label="Suspense, Sylvia" value="number:365">Suspense, Sylvia</option><option label="Suspense, Charles" value="number:366">Suspense, Charles</option><option label="Suspense, Mary" value="number:367">Suspense, Mary</option><option label="Suspense, Esther" value="number:368">Suspense, Esther</option><option label="Karisa, Susan" value="number:369">Karisa, Susan</option><option label="Mandela, Nelson" value="number:370">Mandela, Nelson</option><option label="Matole, Stanley" value="number:371">Matole, Stanley</option><option label="Makuri, Lucy" value="number:372">Makuri, Lucy</option><option label="Ogila, Debrah" value="number:373">Ogila, Debrah</option><option label="Oriri, Lucy" value="number:374">Oriri, Lucy</option><option label="Front, Agne" value="number:375">Front, Agne</option><option label="Langat, Collins" value="number:377">Langat, Collins</option><option label="Kiprop, Collins" value="number:379">Kiprop, Collins</option></select><div class="chosen-container chosen-container-single" style="width: 249px;" title="" id="staffId_chosen"><a class="chosen-single" tabindex="-1"><span>--Select Staff--</span><div><b></b></div></a><div class="chosen-drop"><div class="chosen-search"><input type="text" autocomplete="off" style=""></div><ul class="chosen-results"></ul></div></div>
+                     </div>
+                  </div>
+                  <div class="form-group">
+                     <label class="control-label col-sm-2 ng-binding">Legal Form</label>
+                     <div class="col-sm-3">
+                        <select id="legalFormId" ng-model="formData.legalFormId" class="form-control ng-valid ng-not-empty ng-dirty ng-valid-parse ng-touched" ng-options="legalForm.id as legalForm.value for legalForm in clientLegalFormOptions" value="" ng-change="displayPersonOrNonPersonOptions(formData.legalFormId)" style=""><option value="" class="ng-binding" selected="selected">--Select Legal Form--</option><option label="PERSON" value="number:1">PERSON</option><option label="ENTITY" value="number:2">ENTITY</option></select>
+                     </div>
+                  </div>
+                  <div data-ng-switch="" on="showNonPersonOptions">
+                     <!-- ngSwitchWhen: false --><div data-ng-switch-when="false" class="ng-scope">
+                        <div class="form-group">
+                           <label class="control-label col-sm-2 ng-binding" for="firstname">First name<span class="required">*</span></label>
+                           <div class="col-sm-3">
+                              <input type="text" id="firstname" name="firstname" ng-model="formData.firstname" class="form-control ng-isolate-scope ng-not-empty ng-dirty ng-valid-parse ng-valid ng-valid-required ng-valid-req ng-touched" required="" late-validate="" style="">
+                           </div>
+                           <div class="col-sm-2">
+                               <span ng-show="createclientform.firstname.$invalid &amp;&amp; createclientform.firstname.$dirty" class="ng-hide">
+                               </span>
+                              <form-validate valattributeform="createclientform" valattribute="firstname"><span ng-show="createclientform.firstname.$invalid" class="ng-scope ng-hide"><small class="error ng-binding ng-hide" ng-show="createclientform.firstname.$error.req || rc.createclientform.attempted || createclientform.$submitted ">Required Field</small><small class="required error ng-binding ng-hide" ng-show="createclientform.firstname.$error.nval">Must be numeric</small></span></form-validate>
+                           </div>
+                        </div>
+                     </div><!-- end ngSwitchWhen: -->
+                  </div>
+                  <div data-ng-switch="" on="showNonPersonOptions">
+                     <!-- ngSwitchWhen: false --><div data-ng-switch-when="false" class="ng-scope">
+                        <div class="form-group">
+                           <label class="control-label col-sm-2 ng-binding" for="middlename">Middle name</label>
+                           <div class="col-sm-3">
+                              <input type="text" id="middlename" name="middlename" ng-model="formData.middlename" class="form-control ng-valid ng-not-empty ng-dirty ng-valid-parse ng-touched" style="">
+                           </div>
+                           <div class="col-sm-2">
+                               <span ng-show="createclientform.middlename.$invalid &amp;&amp; createclientform.middlename.$dirty" class="ng-hide">
+                               </span>
+                           </div>
+                           <label data-ng-switch="" on="showNonPersonOptions" class="control-label col-sm-2 ng-binding" for="isStaff">Is Staff?</label>
+
+                           <div data-ng-switch="" on="showNonPersonOptions" class="col-sm-3">
+                              <label class="checkbox">
+                                 <input type="checkbox" id="isStaff" ng-model="formData.isStaff" class="ng-untouched ng-valid ng-not-empty ng-dirty ng-valid-parse" style="">
+                              </label>
+                           </div>
+                        </div>
+                     </div><!-- end ngSwitchWhen: -->
+                  </div>
+                  <div data-ng-switch="" on="showNonPersonOptions">
+                     <!-- ngSwitchWhen: false --><div data-ng-switch-when="false" class="ng-scope">
+                        <div class="form-group">
+                           <label class="control-label col-sm-2 ng-binding" for="lastname">Last name
+                           <span class="required">*</span>
+                           </label>
+                           <div class="col-sm-3">
+                              <input type="text" id="lastname" name="lastname" ng-model="formData.lastname" class="form-control ng-isolate-scope ng-not-empty ng-dirty ng-valid-parse ng-valid ng-valid-required ng-valid-req ng-touched" required="" late-validate="" style="">
+                           </div>
+                           <div class="col-sm-2">
+                               <span ng-show="createclientform.lastname.$invalid &amp;&amp; createclientform.lastname.$dirty" class="ng-hide">
+                               </span>
+                              <form-validate valattributeform="createclientform" valattribute="lastname"><span ng-show="createclientform.lastname.$invalid" class="ng-scope ng-hide"><small class="error ng-binding ng-hide" ng-show="createclientform.lastname.$error.req || rc.createclientform.attempted || createclientform.$submitted ">Required Field</small><small class="required error ng-binding ng-hide" ng-show="createclientform.lastname.$error.nval">Must be numeric</small></span></form-validate>
+                           </div>
+                        </div>
+                     </div><!-- end ngSwitchWhen: -->
+                  </div>
+                  <div data-ng-switch="" on="showNonPersonOptions">
+                     <!-- ngSwitchWhen: true -->
+                  </div>
+                  <div class="form-group">
+                     <label class="control-label col-sm-2 ng-binding" for="mobileNo">Mobile number</label>
+                     <div class="col-sm-3">
+                        <input type="text" id="mobileNo" name="mobileNo" ng-model="formData.mobileNo" ng-pattern="/^[0-9]+$/" class="form-control ng-not-empty ng-dirty ng-valid-parse ng-invalid ng-invalid-pattern ng-touched" style="">
+                     </div>
+                     <div class="col-sm-2">
+                        <span ng-show="createclientform.mobileNo.$invalid &amp;&amp; createclientform.mobileNo.$dirty" class="">
+                        <small class="required ng-binding" ng-show="createclientform.mobileNo.$error.pattern">
+                        Must be numeric
+                        </small>
+                        </span>
+                     </div>
+                  </div>
+                  <div class="form-group">
+                     <label class="control-label col-sm-2 ng-binding" for="additionalMobileNo">Alt. number</label>
+                     <div class="col-sm-3">
+                        <input type="text" id="additionalMobileNo" name="additionalMobileNo" ng-model="formData.additionalMobileNo" ng-pattern="/^[0-9]+$/" class="form-control ng-not-empty ng-dirty ng-valid-parse ng-invalid ng-invalid-pattern ng-touched" style="">
+                     </div>
+                     <div class="col-sm-2">
+                        <span ng-show="createclientform.additionalMobileNo.$invalid &amp;&amp; createclientform.additionalMobileNo.$dirty" class="">
+                        <small class="required ng-binding" ng-show="createclientform.additionalMobileNo.$error.pattern">
+                        Must be numeric
+                        </small>
+                        </span>
+                     </div>
+                  </div>
+                  <div class="form-group">
+                     <label class="control-label col-sm-2 ng-binding" ng-hide="showNonPersonOptions">Date of Birth</label>
+                     <label class="control-label col-sm-2 ng-binding ng-hide" ng-show="showNonPersonOptions">Incorporation Date</label>
+                     <div class="col-sm-3">
+                        <input id="dateofbirth" type="text" name="dateofbirth" datepicker-pop="dd MMMM yyyy" ng-model="first.dateOfBirth" is-open="opened1" min="minDate" max="restrictDate" class="form-control ng-valid ng-not-empty ng-dirty ng-valid-parse ng-touched" style=""><ul class="dropdown-menu ng-scope ng-valid ng-valid-date ng-valid-date-disabled ng-not-empty" ng-style="{display: (isOpen &amp;&amp; 'block') || 'none', top: position.top+'px', left: position.left+'px'}" ng-model="date" ng-change="dateSelection()" style="display: none; top: 34px; left: 15px;">
+	<li ng-transclude=""><table min="min" max="max" show-today="showToday" show-weeks="showWeeks" class="ng-scope ng-isolate-scope">
+  <thead>
+    <tr class="text-center">
+      <th><button type="button" class="btn-black pull-left" ng-click="move(-1)"><i class="fa fa-chevron-left"></i></button></th>
+      <th colspan="6"><button type="button" class="btn-black btn-block" ng-click="toggleMode()"><strong class="ng-binding">June 1996</strong></button></th>
+      <th><button type="button" class="btn-black pull-right" ng-click="move(1)"><i class="fa fa-chevron-right"></i></button></th>
+    </tr>
+    <tr class="text-center" ng-show="labels.length &gt; 0">
+      <th ng-show="showWeekNumbers">#</th>
+      <!-- ngRepeat: label in labels --><th ng-repeat="label in labels" class="ng-binding ng-scope">Sun</th><!-- end ngRepeat: label in labels --><th ng-repeat="label in labels" class="ng-binding ng-scope">Mon</th><!-- end ngRepeat: label in labels --><th ng-repeat="label in labels" class="ng-binding ng-scope">Tue</th><!-- end ngRepeat: label in labels --><th ng-repeat="label in labels" class="ng-binding ng-scope">Wed</th><!-- end ngRepeat: label in labels --><th ng-repeat="label in labels" class="ng-binding ng-scope">Thu</th><!-- end ngRepeat: label in labels --><th ng-repeat="label in labels" class="ng-binding ng-scope">Fri</th><!-- end ngRepeat: label in labels --><th ng-repeat="label in labels" class="ng-binding ng-scope">Sat</th><!-- end ngRepeat: label in labels -->
+    </tr>
+  </thead>
+  <tbody>
+    <!-- ngRepeat: row in rows --><tr ng-repeat="row in rows" class="ng-scope">
+      <td ng-show="showWeekNumbers" class="text-center"><em class="ng-binding">21</em></td>
+      <!-- ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding muted">26</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding muted">27</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding muted">28</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding muted">29</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding muted">30</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding muted">31</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver btn-silver-info" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">01</span></button>
+      </td><!-- end ngRepeat: dt in row -->
+    </tr><!-- end ngRepeat: row in rows --><tr ng-repeat="row in rows" class="ng-scope">
+      <td ng-show="showWeekNumbers" class="text-center"><em class="ng-binding">22</em></td>
+      <!-- ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">02</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">03</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">04</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">05</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">06</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">07</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">08</span></button>
+      </td><!-- end ngRepeat: dt in row -->
+    </tr><!-- end ngRepeat: row in rows --><tr ng-repeat="row in rows" class="ng-scope">
+      <td ng-show="showWeekNumbers" class="text-center"><em class="ng-binding">23</em></td>
+      <!-- ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">09</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">10</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">11</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">12</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">13</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">14</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">15</span></button>
+      </td><!-- end ngRepeat: dt in row -->
+    </tr><!-- end ngRepeat: row in rows --><tr ng-repeat="row in rows" class="ng-scope">
+      <td ng-show="showWeekNumbers" class="text-center"><em class="ng-binding">24</em></td>
+      <!-- ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">16</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">17</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">18</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">19</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">20</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">21</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">22</span></button>
+      </td><!-- end ngRepeat: dt in row -->
+    </tr><!-- end ngRepeat: row in rows --><tr ng-repeat="row in rows" class="ng-scope">
+      <td ng-show="showWeekNumbers" class="text-center"><em class="ng-binding">25</em></td>
+      <!-- ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">23</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">24</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">25</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">26</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">27</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">28</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">29</span></button>
+      </td><!-- end ngRepeat: dt in row -->
+    </tr><!-- end ngRepeat: row in rows --><tr ng-repeat="row in rows" class="ng-scope">
+      <td ng-show="showWeekNumbers" class="text-center"><em class="ng-binding">26</em></td>
+      <!-- ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">30</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding muted">01</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding muted">02</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding muted">03</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding muted">04</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding muted">05</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding muted">06</span></button>
+      </td><!-- end ngRepeat: dt in row -->
+    </tr><!-- end ngRepeat: row in rows -->
+    <tr ng-show="showTodayDate">
+      <td colspan="8" class="text-center" style="padding-top: 5px">
+        <strong><a ng-click="select(todayDate.date)" class="ng-binding">Today: Oct 17, 2026</a></strong>
+      </td>
+    </tr>
+  </tbody>
+</table></li>
+</ul>
+                     </div>
+                     <div data-ng-switch="" on="showNonPersonOptions">
+                        <!-- ngSwitchWhen: false --><div data-ng-switch-when="false" class="ng-scope">
+                           <label class="control-label col-sm-2 ng-binding">Gender</label>
+                           <div class="col-sm-3">
+                              <select id="genderId" ng-model="formData.genderId" class="form-control ng-valid ng-not-empty ng-dirty ng-valid-parse ng-touched" ng-options="gender.id as gender.name for gender in genderOptions" value="" style=""><option value="" class="ng-binding" selected="selected">--Select Gender--</option><option label="Female" value="number:34">Female</option><option label="Male" value="number:33">Male</option></select>
+                           </div>
+                        </div><!-- end ngSwitchWhen: -->
+                     </div>
+                     <div data-ng-switch="" on="showNonPersonOptions">
+                        <!-- ngSwitchWhen: true -->
+                     </div>
+                  </div>
+                  <div class="form-group">
+                     <label class="control-label col-sm-2 ng-binding">Client Type</label>
+                     <div class="col-sm-3">
+                        <select id="clienttypeId" ng-model="formData.clientTypeId" class="form-control ng-valid ng-not-empty ng-dirty ng-valid-parse ng-touched" ng-options="clienttype.id as clienttype.name for clienttype in clienttypeOptions" value="" style=""><option value="" class="ng-binding" selected="selected">--Select Client Type--</option><option label="IND" value="number:28">IND</option><option label="JLG" value="number:27">JLG</option></select>
+                     </div>
+                     <label class="control-label col-sm-2 ng-binding">Client Classification</label>
+                     <div class="col-sm-3">
+                        <select id="clientClassificationId" ng-model="formData.clientClassificationId" class="form-control ng-valid ng-not-empty ng-dirty ng-valid-parse ng-touched" ng-options="clientClassification.id as clientClassification.name for clientClassification in clientClassificationOptions" value="" style=""><option value="" class="ng-binding" selected="selected">--Select Client Classification--</option><option label="Crop Farming" value="number:18">Crop Farming</option><option label="Jua Kali" value="number:19">Jua Kali</option><option label="Livestock Farming" value="number:17">Livestock Farming</option><option label="Service Industry" value="number:15">Service Industry</option><option label="Trading Sector" value="number:16">Trading Sector</option></select>
+                     </div>
+                  </div>
+                  <div data-ng-switch="" on="showNonPersonOptions">
+                     <!-- ngSwitchWhen: true -->
+                  </div>
+                  <div data-ng-switch="" on="showNonPersonOptions">
+                     <!-- ngSwitchWhen: true -->
+                  </div>
+                  <div data-ng-switch="" on="showNonPersonOptions">
+                     <!-- ngSwitchWhen: true -->
+                  </div>
+                  <div class="form-group">
+                     <label class="control-label col-sm-2 ng-binding" for="externalId">External id</label>
+                     <div class="col-sm-3">
+                        <input type="text" id="externalId" name="externalId" ng-model="formData.externalId" class="form-control ng-valid ng-not-empty ng-dirty ng-valid-parse ng-touched" style="">
+                     </div>
+                  </div>
+                  <div class="form-group" has-permission="ACTIVATE_CLIENT">
+                     <label class="control-label col-sm-2 ng-binding">Active</label>
+                     <div class="col-sm-3">
+                        <input id="activeCheckbox" type="checkbox" ng-model="formData.active" data-ng-change="setChoice()" class="ng-pristine ng-untouched ng-valid ng-empty" style="">
+                     </div>
+                     <div data-ng-switch="" on="choice">
+                        <!-- ngSwitchWhen: 1 -->
+                     </div>
+                  </div>
+                  <div class="form-group">
+                     <label class="control-label col-sm-2 ng-binding">Submitted on</label>
+                     <div class="col-sm-3">
+                        <input id="submittedon" type="text" name="submittedon" datepicker-pop="dd MMMM yyyy" ng-model="first.submitondate" is-open="opened1" min="'2000-01-01'" max="restrictDate" class="form-control ng-valid ng-not-empty ng-dirty ng-valid-parse ng-touched" style=""><ul class="dropdown-menu ng-scope ng-not-empty ng-valid-date ng-invalid ng-invalid-date-disabled" ng-style="{display: (isOpen &amp;&amp; 'block') || 'none', top: position.top+'px', left: position.left+'px'}" ng-model="date" ng-change="dateSelection()" style="display: none; top: 34px; left: 15px;">
+	<li ng-transclude=""><table min="min" max="max" show-today="showToday" show-weeks="showWeeks" class="ng-scope ng-isolate-scope">
+  <thead>
+    <tr class="text-center">
+      <th><button type="button" class="btn-black pull-left" ng-click="move(-1)"><i class="fa fa-chevron-left"></i></button></th>
+      <th colspan="6"><button type="button" class="btn-black btn-block" ng-click="toggleMode()"><strong class="ng-binding">October 2026</strong></button></th>
+      <th><button type="button" class="btn-black pull-right" ng-click="move(1)"><i class="fa fa-chevron-right"></i></button></th>
+    </tr>
+    <tr class="text-center" ng-show="labels.length &gt; 0">
+      <th ng-show="showWeekNumbers">#</th>
+      <!-- ngRepeat: label in labels --><th ng-repeat="label in labels" class="ng-binding ng-scope">Sun</th><!-- end ngRepeat: label in labels --><th ng-repeat="label in labels" class="ng-binding ng-scope">Mon</th><!-- end ngRepeat: label in labels --><th ng-repeat="label in labels" class="ng-binding ng-scope">Tue</th><!-- end ngRepeat: label in labels --><th ng-repeat="label in labels" class="ng-binding ng-scope">Wed</th><!-- end ngRepeat: label in labels --><th ng-repeat="label in labels" class="ng-binding ng-scope">Thu</th><!-- end ngRepeat: label in labels --><th ng-repeat="label in labels" class="ng-binding ng-scope">Fri</th><!-- end ngRepeat: label in labels --><th ng-repeat="label in labels" class="ng-binding ng-scope">Sat</th><!-- end ngRepeat: label in labels -->
+    </tr>
+  </thead>
+  <tbody>
+    <!-- ngRepeat: row in rows --><tr ng-repeat="row in rows" class="ng-scope">
+      <td ng-show="showWeekNumbers" class="text-center"><em class="ng-binding">39</em></td>
+      <!-- ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding muted">27</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding muted">28</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding muted">29</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding muted">30</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">01</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">02</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">03</span></button>
+      </td><!-- end ngRepeat: dt in row -->
+    </tr><!-- end ngRepeat: row in rows --><tr ng-repeat="row in rows" class="ng-scope">
+      <td ng-show="showWeekNumbers" class="text-center"><em class="ng-binding">40</em></td>
+      <!-- ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">04</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">05</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">06</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">07</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">08</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">09</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">10</span></button>
+      </td><!-- end ngRepeat: dt in row -->
+    </tr><!-- end ngRepeat: row in rows --><tr ng-repeat="row in rows" class="ng-scope">
+      <td ng-show="showWeekNumbers" class="text-center"><em class="ng-binding">41</em></td>
+      <!-- ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">11</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">12</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">13</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">14</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">15</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">16</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">17</span></button>
+      </td><!-- end ngRepeat: dt in row -->
+    </tr><!-- end ngRepeat: row in rows --><tr ng-repeat="row in rows" class="ng-scope">
+      <td ng-show="showWeekNumbers" class="text-center"><em class="ng-binding">42</em></td>
+      <!-- ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled" disabled="disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">18</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled" disabled="disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">19</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled" disabled="disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">20</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled" disabled="disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">21</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled" disabled="disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">22</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled" disabled="disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">23</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled" disabled="disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">24</span></button>
+      </td><!-- end ngRepeat: dt in row -->
+    </tr><!-- end ngRepeat: row in rows --><tr ng-repeat="row in rows" class="ng-scope">
+      <td ng-show="showWeekNumbers" class="text-center"><em class="ng-binding">43</em></td>
+      <!-- ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled" disabled="disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">25</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled" disabled="disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">26</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver btn-silver-info" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled" disabled="disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">27</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled" disabled="disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">28</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled" disabled="disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">29</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled" disabled="disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">30</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled" disabled="disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">31</span></button>
+      </td><!-- end ngRepeat: dt in row -->
+    </tr><!-- end ngRepeat: row in rows -->
+    <tr ng-show="showTodayDate">
+      <td colspan="8" class="text-center" style="padding-top: 5px">
+        <strong><a ng-click="select(todayDate.date)" class="ng-binding">Today: Oct 17, 2026</a></strong>
+      </td>
+    </tr>
+  </tbody>
+</table></li>
+</ul>
+                     </div>
+                  </div>
+                  <div class="form-group" ng-show="showSavingOptions">
+                     <label class="control-label col-sm-2 ng-binding">Open Savings account&nbsp;</label>
+                     <div class="col-sm-3">
+                        <input id="opensavingsproduct" type="checkbox" ng-model="savings.opensavingsproduct" ng-true-value="true" ng-false-value="false" class="ng-untouched ng-valid ng-not-empty ng-dirty ng-valid-parse" style="">
+                     </div>
+                     <div ng-show="savings.opensavingsproduct" class="">
+                        <label class="control-label col-sm-2 ng-binding">Select Savings Account</label>
+                        <div class="col-sm-3">
+                           <select id="savingsProductId" ng-model="formData.savingsProductId" ng-options="savingProduct.id as savingProduct.name for savingProduct in savingproducts" value="" class="form-control ng-valid ng-not-empty ng-dirty ng-valid-parse ng-touched" style=""><option value="" class="ng-binding" selected="selected">--Select Savings Product--</option><option label="Short Term Advance" value="number:1">Short Term Advance</option></select>
+                        </div>
+                     </div>
+                  </div>
+
+                  <div ng-show="enableAddress" class="form-group ng-hide">
+                     <div class="form-group">
+                        <div class="control-label col-sm-2">
+                           <h3><strong class="ng-binding">Address</strong>&nbsp;<a ng-click="addAddress()"><i class="fa fa-plus" title="Add Address"></i></a></h3>
+                        </div>
+                     </div>
+                     <!-- ngRepeat: addr in addressArray -->
+                  </div>
+                  <div class="pull-right">
+                     <!-- ngIf: datatables --><button id="save1" class="btn btn-primary ng-binding ng-scope" ng-if="datatables" wz-next="">
+                     Proceed
+                     </button><!-- end ngIf: datatables -->
+                     <!-- ngIf: !datatables -->
+                  </div>
+               </fieldset>
+            </form>
+        </div>
+    </div>
+    <!-- ngRepeat: datatable in datatables --><!-- ngIf: datatables --><div ng-show="selected" ng-class="{current: selected, done: completed}" class="step ng-scope ng-isolate-scope ng-hide" ng-transclude="" ng-if="datatables" ng-repeat="datatable in datatables" icon="fa fa-circle-o" wz-title="Branch">
+    	<div class="card-content ng-scope">
+		   <form class="form-horizontal ng-pristine ng-valid" ng-submit="submit()">
+		      <api-validate><div class="alert ng-isolate-scope alert-danger ng-hide" ng-class="['alert-' + (type || 'warning'), closeable ? 'alert-dismissible' : null]" role="alert" uib-alert="" type="danger" ng-show="errorStatus || errorDetails.length &gt; 0">
+    <button ng-show="closeable" type="button" class="close ng-hide" ng-click="close({$event: $event})">
+        <span aria-hidden="true">×</span>
+        <span class="sr-only">Close</span>
+    </button>
+    <div ng-transclude=""><!-- ngRepeat: errorArray in errorDetails --></div>
+</div></api-validate>
+		      <fieldset>
+		      	<legend class="ng-binding">Branch</legend>
+		        <!-- ngRepeat: columnHeader in datatable.columnHeaderData --><div class="form-group ng-scope" ng-repeat="columnHeader in datatable.columnHeaderData">
+		            <label class="control-label col-sm-3 ng-binding">Branch Office
+		            <span ng-show="!columnHeader.isColumnNullable" class="required">*</span>
+		            </label>
+		            <div class="col-sm-3">
+		               <input ng-show="fieldType(columnHeader.columnDisplayType) == 'TEXT'" type="text" ng-model="formData.datatables[datatables.indexOf(datatable)].data[columnHeader.columnName]" class="form-control ng-pristine ng-untouched ng-valid ng-empty ng-hide">
+		               <input ng-show="fieldType(columnHeader.columnDisplayType) == 'DATE'" type="text" datepicker-pop="dd MMMM yyyy" ng-model="formDat.datatables[datatables.indexOf(datatable)].data[columnHeader.columnName]" is-open="opened0" class="form-control ng-pristine ng-untouched ng-valid ng-empty ng-hide"><ul class="dropdown-menu ng-scope ng-empty ng-valid ng-valid-date ng-valid-date-disabled" ng-style="{display: (isOpen &amp;&amp; 'block') || 'none', top: position.top+'px', left: position.left+'px'}" ng-model="date" ng-change="dateSelection()" style="display: none; top: 68px; left: 15px;">
+	<li ng-transclude=""><table show-today="showToday" show-weeks="showWeeks" class="ng-scope ng-isolate-scope">
+  <thead>
+    <tr class="text-center">
+      <th><button type="button" class="btn-black pull-left" ng-click="move(-1)"><i class="fa fa-chevron-left"></i></button></th>
+      <th colspan="6"><button type="button" class="btn-black btn-block" ng-click="toggleMode()"><strong class="ng-binding">October 2026</strong></button></th>
+      <th><button type="button" class="btn-black pull-right" ng-click="move(1)"><i class="fa fa-chevron-right"></i></button></th>
+    </tr>
+    <tr class="text-center" ng-show="labels.length &gt; 0">
+      <th ng-show="showWeekNumbers">#</th>
+      <!-- ngRepeat: label in labels --><th ng-repeat="label in labels" class="ng-binding ng-scope">Sun</th><!-- end ngRepeat: label in labels --><th ng-repeat="label in labels" class="ng-binding ng-scope">Mon</th><!-- end ngRepeat: label in labels --><th ng-repeat="label in labels" class="ng-binding ng-scope">Tue</th><!-- end ngRepeat: label in labels --><th ng-repeat="label in labels" class="ng-binding ng-scope">Wed</th><!-- end ngRepeat: label in labels --><th ng-repeat="label in labels" class="ng-binding ng-scope">Thu</th><!-- end ngRepeat: label in labels --><th ng-repeat="label in labels" class="ng-binding ng-scope">Fri</th><!-- end ngRepeat: label in labels --><th ng-repeat="label in labels" class="ng-binding ng-scope">Sat</th><!-- end ngRepeat: label in labels -->
+    </tr>
+  </thead>
+  <tbody>
+    <!-- ngRepeat: row in rows --><tr ng-repeat="row in rows" class="ng-scope">
+      <td ng-show="showWeekNumbers" class="text-center"><em class="ng-binding">39</em></td>
+      <!-- ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding muted">27</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding muted">28</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding muted">29</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding muted">30</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">01</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">02</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">03</span></button>
+      </td><!-- end ngRepeat: dt in row -->
+    </tr><!-- end ngRepeat: row in rows --><tr ng-repeat="row in rows" class="ng-scope">
+      <td ng-show="showWeekNumbers" class="text-center"><em class="ng-binding">40</em></td>
+      <!-- ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">04</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">05</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">06</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">07</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">08</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">09</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">10</span></button>
+      </td><!-- end ngRepeat: dt in row -->
+    </tr><!-- end ngRepeat: row in rows --><tr ng-repeat="row in rows" class="ng-scope">
+      <td ng-show="showWeekNumbers" class="text-center"><em class="ng-binding">41</em></td>
+      <!-- ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">11</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">12</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">13</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">14</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">15</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">16</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">17</span></button>
+      </td><!-- end ngRepeat: dt in row -->
+    </tr><!-- end ngRepeat: row in rows --><tr ng-repeat="row in rows" class="ng-scope">
+      <td ng-show="showWeekNumbers" class="text-center"><em class="ng-binding">42</em></td>
+      <!-- ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">18</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">19</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">20</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">21</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">22</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">23</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">24</span></button>
+      </td><!-- end ngRepeat: dt in row -->
+    </tr><!-- end ngRepeat: row in rows --><tr ng-repeat="row in rows" class="ng-scope">
+      <td ng-show="showWeekNumbers" class="text-center"><em class="ng-binding">43</em></td>
+      <!-- ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">25</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">26</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">27</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">28</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">29</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">30</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">31</span></button>
+      </td><!-- end ngRepeat: dt in row -->
+    </tr><!-- end ngRepeat: row in rows -->
+    <tr ng-show="showTodayDate">
+      <td colspan="8" class="text-center" style="padding-top: 5px">
+        <strong><a ng-click="select(todayDate.date)" class="ng-binding">Today: Oct 17, 2026</a></strong>
+      </td>
+    </tr>
+  </tbody>
+</table></li>
+</ul>
+		               <div ng-show="fieldType(columnHeader.columnDisplayType) == 'DATETIME'" class="form-inline ng-hide">
+		                  <div class="form-group">
+		                     <input type="text" datepicker-pop="dd MMMM yyyy" ng-model="formDat.datatables[datatables.indexOf(datatable)].data[columnHeader.columnName].date" is-open="opened0" class="form-control ng-pristine ng-untouched ng-valid ng-empty"><ul class="dropdown-menu ng-scope ng-empty ng-valid ng-valid-date ng-valid-date-disabled" ng-style="{display: (isOpen &amp;&amp; 'block') || 'none', top: position.top+'px', left: position.left+'px'}" ng-model="date" ng-change="dateSelection()" style="display: none; top: 102px; left: 0px;">
+	<li ng-transclude=""><table show-today="showToday" show-weeks="showWeeks" class="ng-scope ng-isolate-scope">
+  <thead>
+    <tr class="text-center">
+      <th><button type="button" class="btn-black pull-left" ng-click="move(-1)"><i class="fa fa-chevron-left"></i></button></th>
+      <th colspan="6"><button type="button" class="btn-black btn-block" ng-click="toggleMode()"><strong class="ng-binding">October 2026</strong></button></th>
+      <th><button type="button" class="btn-black pull-right" ng-click="move(1)"><i class="fa fa-chevron-right"></i></button></th>
+    </tr>
+    <tr class="text-center" ng-show="labels.length &gt; 0">
+      <th ng-show="showWeekNumbers">#</th>
+      <!-- ngRepeat: label in labels --><th ng-repeat="label in labels" class="ng-binding ng-scope">Sun</th><!-- end ngRepeat: label in labels --><th ng-repeat="label in labels" class="ng-binding ng-scope">Mon</th><!-- end ngRepeat: label in labels --><th ng-repeat="label in labels" class="ng-binding ng-scope">Tue</th><!-- end ngRepeat: label in labels --><th ng-repeat="label in labels" class="ng-binding ng-scope">Wed</th><!-- end ngRepeat: label in labels --><th ng-repeat="label in labels" class="ng-binding ng-scope">Thu</th><!-- end ngRepeat: label in labels --><th ng-repeat="label in labels" class="ng-binding ng-scope">Fri</th><!-- end ngRepeat: label in labels --><th ng-repeat="label in labels" class="ng-binding ng-scope">Sat</th><!-- end ngRepeat: label in labels -->
+    </tr>
+  </thead>
+  <tbody>
+    <!-- ngRepeat: row in rows --><tr ng-repeat="row in rows" class="ng-scope">
+      <td ng-show="showWeekNumbers" class="text-center"><em class="ng-binding">39</em></td>
+      <!-- ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding muted">27</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding muted">28</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding muted">29</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding muted">30</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">01</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">02</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">03</span></button>
+      </td><!-- end ngRepeat: dt in row -->
+    </tr><!-- end ngRepeat: row in rows --><tr ng-repeat="row in rows" class="ng-scope">
+      <td ng-show="showWeekNumbers" class="text-center"><em class="ng-binding">40</em></td>
+      <!-- ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">04</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">05</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">06</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">07</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">08</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">09</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">10</span></button>
+      </td><!-- end ngRepeat: dt in row -->
+    </tr><!-- end ngRepeat: row in rows --><tr ng-repeat="row in rows" class="ng-scope">
+      <td ng-show="showWeekNumbers" class="text-center"><em class="ng-binding">41</em></td>
+      <!-- ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">11</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">12</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">13</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">14</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">15</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">16</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">17</span></button>
+      </td><!-- end ngRepeat: dt in row -->
+    </tr><!-- end ngRepeat: row in rows --><tr ng-repeat="row in rows" class="ng-scope">
+      <td ng-show="showWeekNumbers" class="text-center"><em class="ng-binding">42</em></td>
+      <!-- ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">18</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">19</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">20</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">21</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">22</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">23</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">24</span></button>
+      </td><!-- end ngRepeat: dt in row -->
+    </tr><!-- end ngRepeat: row in rows --><tr ng-repeat="row in rows" class="ng-scope">
+      <td ng-show="showWeekNumbers" class="text-center"><em class="ng-binding">43</em></td>
+      <!-- ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">25</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">26</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">27</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">28</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">29</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">30</span></button>
+      </td><!-- end ngRepeat: dt in row --><td ng-repeat="dt in row" class="text-center ng-scope">
+        <button type="button" style="width:100%;" class="btn-silver" ng-class="{'btn-silver-info': dt.selected}" ng-click="select(dt.date)" ng-disabled="dt.disabled"><span ng-class="{muted: dt.secondary}" class="ng-binding">31</span></button>
+      </td><!-- end ngRepeat: dt in row -->
+    </tr><!-- end ngRepeat: row in rows -->
+    <tr ng-show="showTodayDate">
+      <td colspan="8" class="text-center" style="padding-top: 5px">
+        <strong><a ng-click="select(todayDate.date)" class="ng-binding">Today: Oct 17, 2026</a></strong>
+      </td>
+    </tr>
+  </tbody>
+</table></li>
+</ul>
+		                  </div>
+		                  <div class="form-group">
+		                     <input type="time" placeholder="HH:MM:SS" ng-model="formDat.datatables[datatables.indexOf(datatable)].data[columnHeader.columnName].time" class="form-control ng-pristine ng-untouched ng-valid ng-empty">
+		                  </div>
+		               </div>
+		               <div ng-show="fieldType(columnHeader.columnDisplayType) == 'BOOLEAN'" class="ng-hide">
+		                  <label class="radio-inline ng-binding">
+		                  <input type="radio" ng-model="formData.datatables[datatables.indexOf(datatable)].data[columnHeader.columnName]" value="true" class="ng-pristine ng-untouched ng-valid ng-empty" name="646">
+		                  True
+		                  </label>
+		                  <label class="radio-inline ng-binding">
+		                  <input type="radio" ng-model="formData.datatables[datatables.indexOf(datatable)].data[columnHeader.columnName]" value="false" class="ng-pristine ng-untouched ng-valid ng-empty" name="647">
+		                  False
+		                  </label>
+		               </div>
+		               <span data-ng-switch="" on="columnHeader.columnDisplayType">
+		                  <!-- ngSwitchWhen: CODELOOKUP --><select ng-show="fieldType(columnHeader.columnDisplayType) == 'SELECT'" data-ng-switch-when="CODELOOKUP" ng-model="formData.datatables[datatables.indexOf(datatable)].data[columnHeader.columnName]" ng-options="columnValue.id as columnValue.value for columnValue in columnHeader.columnValues" value="" class="form-control ng-pristine ng-untouched ng-valid ng-scope ng-empty"><option value="" class="ng-binding" selected="selected">Select one</option><option label="Mombasa" value="number:66">Mombasa</option><option label="Nairobi2" value="number:67">Nairobi2</option><option label="Malindi" value="number:68">Malindi</option><option label="Naivasha" value="number:69">Naivasha</option><option label="Nakuru" value="number:70">Nakuru</option><option label="Taveta" value="number:71">Taveta</option><option label="Voi" value="number:72">Voi</option><option label="Eldoret" value="number:131">Eldoret</option><option label="Kitale" value="number:139">Kitale</option><option label="Bungoma" value="number:154">Bungoma</option><option label="Kakamega" value="number:165">Kakamega</option><option label="Kisii" value="number:166">Kisii</option><option label="Kisumu" value="number:179">Kisumu</option><option label="Kericho" value="number:210">Kericho</option><option label="Corporate" value="number:211">Corporate</option><option label="Migori" value="number:226">Migori</option><option label="Bomet" value="number:265">Bomet</option><option label="Vilnius VLN" value="number:275">Vilnius VLN</option><option label="Akmene" value="number:279">Akmene</option><option label="Kapsabet
+" value="number:284">Kapsabet
+</option><option label="Tallin" value="number:285">Tallin</option><option label="Testas" value="number:286">Testas</option><option label="TEST" value="number:312">TEST</option><option label="Meru" value="number:319">Meru</option><option label="Maua" value="number:320">Maua</option><option label="Homabay" value="number:321">Homabay</option><option label="Mumias" value="number:322">Mumias</option><option label="Siaya" value="number:323">Siaya</option><option label="Narok" value="number:324">Narok</option><option label="Kitui" value="number:325">Kitui</option><option label="Busia" value="number:326">Busia</option><option label="Embu" value="number:327">Embu</option><option label="Thika" value="number:328">Thika</option><option label="Machakos" value="number:329">Machakos</option><option label="Boxer factory" value="number:330">Boxer factory</option><option label="TVS factory" value="number:331">TVS factory</option><option label="Honda factory" value="number:332">Honda factory</option><option label="Wote" value="number:354">Wote</option><option label="Nyeri" value="number:359">Nyeri</option><option label="Skygo Factory" value="number:362">Skygo Factory</option><option label="Lodwar" value="number:367">Lodwar</option><option label="Kapsabet" value="number:380">Kapsabet</option><option label="China Factory" value="number:381">China Factory</option><option label="Trying" value="number:443">Trying</option><option label="Druskininkai" value="number:448">Druskininkai</option><option label="Metasite Tests" value="number:463">Metasite Tests</option><option label="Mifos Query Tests" value="number:480">Mifos Query Tests</option></select><!-- end ngSwitchWhen: -->
+		                  <!-- ngSwitchWhen: CODEVALUE -->
+		               </span>
+		            </div>
+		        </div><!-- end ngRepeat: columnHeader in datatable.columnHeaderData -->
+		        <!-- ngIf: !$last -->
+		        <!-- ngIf: $last --><div class="col-md-offset-5 ng-scope" ng-if="$last">
+		            <a id="cancel2" ng-href="#/clients" class="btn btn-default ng-binding" href="#/clients">Cancel</a>
+		            <button id="save2" type="submit" class="btn btn-primary ng-binding" ng-hide="blockUI" has-permission="CREATE_CLIENT">Submit</button>
+		            <button class="btn btn-info ng-hide" ng-show="blockUI"><strong class="ng-binding">Processing</strong></button>
+		        </div><!-- end ngIf: $last -->
+		      </fieldset>
+		   </form>
+		</div>
+	</div><!-- end ngIf: datatables --><!-- end ngRepeat: datatable in datatables -->
+   </div>
+    </div>
+</div><script>window.model={};
+document.querySelectorAll('select[chosen]').forEach(sel=>{const c=sel.nextElementSibling;const a=c.querySelector('.chosen-single');const ul=c.querySelector('.chosen-results');
+ a.addEventListener('mousedown',()=>{c.classList.toggle('chosen-with-drop');ul.innerHTML=[...sel.options].filter(o=>o.value).map(o=>'<li class="active-result" data-v="'+o.value+'">'+o.text+'</li>').join('');
+  ul.querySelectorAll('li').forEach(li=>li.addEventListener('mouseup',()=>{sel.value=li.dataset.v;sel.dispatchEvent(new Event('change'));a.querySelector('span').textContent=li.textContent;c.classList.remove('chosen-with-drop');window.model[sel.id]=li.textContent;}));});});
+document.querySelectorAll('input').forEach(i=>{const k=i.name||i.id||i.dataset.test;i.addEventListener('input',()=>{window.model[k]=i.value});i.addEventListener('change',()=>{if(i.type==='checkbox')window.model[k]=i.checked})});
+document.querySelectorAll('select:not([chosen])').forEach(s=>s.addEventListener('change',()=>{window.model[s.id||s.dataset.test]=s.options[s.selectedIndex].text.trim()}));
+</script></body></html>

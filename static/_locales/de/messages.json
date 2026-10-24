@@ -1,0 +1,17 @@
+{
+  "extName": {
+    "message": "Formigo — intelligenter Formular-Filler"
+  },
+  "extDesc": {
+    "message": "Realistische Faker-Testdaten in Formularen: Felderkennung per Kontext, eigene Regeln, 70+ Datensprachen, Dateien im passenden Typ."
+  },
+  "cmdFillAll": {
+    "message": "Alle Felder der Seite ausfüllen"
+  },
+  "cmdFillForm": {
+    "message": "Aktuelles Formular ausfüllen"
+  },
+  "cmdFillField": {
+    "message": "Aktuelles Feld ausfüllen"
+  }
+}

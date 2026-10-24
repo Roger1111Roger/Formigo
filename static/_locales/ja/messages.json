@@ -1,0 +1,17 @@
+{
+  "extName": {
+    "message": "Formigo — スマートフォーム入力"
+  },
+  "extDesc": {
+    "message": "Faker で本物らしいテストデータをフォームに入力：文脈に応じたフィールド検出、カスタムルール、70以上のデータ言語、適切な形式のファイル。"
+  },
+  "cmdFillAll": {
+    "message": "ページ上のすべてのフィールドに入力"
+  },
+  "cmdFillForm": {
+    "message": "現在のフォームに入力"
+  },
+  "cmdFillField": {
+    "message": "現在のフィールドに入力"
+  }
+}
