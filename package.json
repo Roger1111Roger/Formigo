@@ -4,7 +4,8 @@
   "description": "Formigo: Chrome extension that fills web forms with realistic test data",
   "scripts": {
     "build": "node build.mjs",
-    "test": "node build.mjs && node test/e2e.mjs"
+    "test": "node build.mjs && node test/e2e.mjs",
+    "lint:firefox": "npx --yes web-ext@10.8.0 lint -s dist-firefox"
   },
   "keywords": [],
   "author": "",

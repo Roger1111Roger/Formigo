@@ -9,6 +9,14 @@ A Chrome extension (Manifest V3) that fills web forms with test data. Similar to
 3. Click "Load unpacked" and select the unpacked folder (the one containing `manifest.json`).
 4. Optionally pin the extension icon to the toolbar.
 
+### Firefox
+
+Firefox 140 or newer (desktop) is supported from the same source code with its own build, `formigo-firefox.zip`.
+
+1. Open `about:debugging#/runtime/this-firefox`.
+2. Click "Load Temporary Add-on…" and pick `manifest.json` from the unpacked `formigo-firefox.zip` (or the zip itself).
+3. The add-on stays loaded until Firefox restarts. A permanent install needs a build signed by Mozilla: upload the same zip to addons.mozilla.org (it can be unlisted).
+
 ## Usage
 
 - **Alt+Z**: fill every field on the page, including fields in open dialogs and behind them.
@@ -80,12 +88,17 @@ Finding the field: a **RegExp** on the field label, a **CSS** selector or **XPat
 
 Reload open tabs (F5): the old copy of the script in a tab disables itself after the extension updates, but a page that hasn't been reloaded may still show its errors in the console.
 
+## Privacy
+
+Formigo collects no data: settings and files stay in the browser. The full policy is in [PRIVACY.md](PRIVACY.md); its GitHub link works as the privacy policy URL for the Chrome Web Store and addons.mozilla.org.
+
 ## Building from source
 
 ```
 npm install
-node build.mjs      # output in dist/
+node build.mjs      # Chrome build in dist/, Firefox build in dist-firefox/
 npm test            # build and run end-to-end checks on test/site/bench.html
+npm run lint:firefox  # Mozilla's web-ext lint on dist-firefox/
 ```
 
 ## Tests
