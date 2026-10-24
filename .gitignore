@@ -4,3 +4,4 @@ dist/
 test/*.png
 test/store/
 test/out/
+dist-firefox/
